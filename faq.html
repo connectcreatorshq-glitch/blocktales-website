@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - BlockTales Studio</title>
+    <meta name="description" content="Frequently asked questions about Minecraft story scripts, delivery, customization and refunds.">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#10b981',
+                        dark: '#0f172a',
+                        darker: '#020617',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-darker text-gray-100 font-sans antialiased">
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    
+    <custom-navbar></custom-navbar>
+    
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">FAQ</h1>
+                <p class="text-gray-400">Answers to your questions</p>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item rounded-xl bg-gray-900 border border-gray-800 overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-800/50 transition-colors">
+                        <span class="font-semibold text-white flex items-center gap-3">
+                            <i data-feather="clock" class="w-5 h-5 text-emerald-400"></i>
+                            How long does delivery take?
+                        </span>
+                        <i data-feather="chevron-down" class="w-5 h-5 text-gray-400 transform transition-transform faq-icon"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
+                        Delivery for pre-written scripts is instant — you’ll receive a Google Docs link via email within 5 to 30 minutes. Custom scripts may take longer, typically delivered within 24 hours. If it’s urgent, mention it on WhatsApp and we’ll prioritize your order.
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="faq-item rounded-xl bg-gray-900 border border-gray-800 overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-800/50 transition-colors">
+                        <span class="font-semibold text-white flex items-center gap-3">
+                            <i data-feather="edit-3" class="w-5 h-5 text-emerald-400"></i>
+                            Can I request changes to the script?
+                        </span>
+                        <i data-feather="chevron-down" class="w-5 h-5 text-gray-400 transform transition-transform faq-icon"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
+                        Yes, absolutely! For ₹99, you can purchase a customization add-on to modify character names, endings, or specific scenes. Plus, every order includes one free revision — if you need minor changes, we’ll adjust them at no extra cost.
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="faq-item rounded-xl bg-gray-900 border border-gray-800 overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-800/50 transition-colors">
+                        <span class="font-semibold text-white flex items-center gap-3">
+                            <i data-feather="file-text" class="w-5 h-5 text-emerald-400"></i>
+                        How are the scripts delivered?
+                        </span>
+                        <i data-feather="chevron-down" class="w-5 h-5 text-gray-400 transform transition-transform faq-icon"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
+                        All scripts are delivered via Google Docs. You’ll receive an editable link that you can use directly. Each document includes a scene-by-scene breakdown, dialogue suggestions, and camera directions. You can also download the document as a PDF or Word file if you wish.
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="faq-item rounded-xl bg-gray-900 border border-gray-800 overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-800/50 transition-colors">
+                        <span class="font-semibold text-white flex items-center gap-3">
+                            <i data-feather="shield" class="w-5 h-5 text-emerald-400"></i>
+                            Will this cause a copyright strike on YouTube?
+                        </span>
+                        <i data-feather="chevron-down" class="w-5 h-5 text-gray-400 transform transition-transform faq-icon"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
+                        No, it’s completely safe. All scripts are 100% original and specifically written for Minecraft gameplay. You receive full rights to use the script, and there will be no copyright issues — it’s your property once purchased.
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="faq-item rounded-xl bg-gray-900 border border-gray-800 overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-800/50 transition-colors">
+                        <span class="font-semibold text-white flex items-center gap-3">
+                            <i data-feather="refresh-cw" class="w-5 h-5 text-emerald-400"></i>
+                            What is the refund policy?
+                        </span>
+                        <i data-feather="chevron-down" class="w-5 h-5 text-gray-400 transform transition-transform faq-icon"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
+                        If a script is not delivered or there is a technical issue, a full refund will be provided within 7 days. However, since this is a digital product, refunds after delivery are only applicable if there is a major error or the script does not meet your requirements. For custom scripts, a 50% advance is non-refundable, as they are specifically written for you.
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 6 -->
+                <div class="faq-item rounded-xl bg-gray-900 border border-gray-800 overflow-hidden">
+                    <button class="faq-toggle w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-800/50 transition-colors">
+                        <span class="font-semibold text-white flex items-center gap-3">
+                            <i data-feather="globe" class="w-5 h-5 text-emerald-400"></i>
+                            Which languages are available?
+                        </span>
+                        <i data-feather="chevron-down" class="w-5 h-5 text-gray-400 transform transition-transform faq-icon"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-gray-400 leading-relaxed border-t border-gray-800 pt-4">
+                        Currently, scripts are available in two languages: Hinglish (a mix of Hindi and English, ideal for connecting with the Indian audience) and English. You can select your preferred language when placing your order. For custom scripts, you can also request a specific dialect or style.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 p-8 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-center">
+                <h3 class="text-xl font-bold text-white mb-2">Still have any doubts?</h3>
+                <p class="text-gray-400 mb-4">Message us directly on WhatsApp - you’ll get a reply within 2 minutes.</p>
+                <a href="contact.html" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-black font-bold rounded-lg transition-colors">
+                    Contact Us <i data-feather="arrow-right" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <custom-footer></custom-footer>
+    
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+        
+        // FAQ Toggle Logic
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('.faq-icon');
+                
+                content.classList.toggle('hidden');
+                icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
+        });
+    </script>
+</body>
+</html>

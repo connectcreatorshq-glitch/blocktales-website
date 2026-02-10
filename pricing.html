@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - BlockTales Studio</title>
+    <meta name="description" content="Affordable Minecraft story scripts starting at ₹299. Customization available. Instant delivery via Google Docs.">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#10b981',
+                        secondary: '#065f46',
+                        dark: '#0f172a',
+                        darker: '#020617',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-darker text-gray-100 font-sans antialiased">
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="components/trust-badge.js"></script>
+    
+    <custom-navbar></custom-navbar>
+    
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-16">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Simple Pricing</h1>
+                <p class="text-xl text-gray-400">No hidden charges. One-time payment with lifetime access.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Standard Script -->
+                <div class="relative p-8 rounded-2xl bg-gray-900 border-2 border-emerald-500/30 shadow-xl shadow-emerald-500/10">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="px-4 py-1 bg-emerald-500 text-black text-sm font-bold rounded-full">Most Popular</span>
+                    </div>
+                    
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-white mb-2">Standard Minecraft Script</h3>
+                        <div class="flex items-center justify-center gap-1">
+                            <span class="text-5xl font-bold text-emerald-400">₹299</span>
+                            <span class="text-gray-500 line-through text-xl">₹499</span>
+                        </div>
+                        <p class="text-gray-400 mt-2">Per Script</p>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3">
+                            <i data-feather="check" class="w-5 h-5 text-emerald-400 flex-shrink-0"></i>
+                            <span class="text-gray-300">Complete 10–11 minute script</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-feather="check" class="w-5 h-5 text-emerald-400 flex-shrink-0"></i>
+                            <span class="text-gray-300">YouTube-friendly pacing & hooks</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-feather="check" class="w-5 h-5 text-emerald-400 flex-shrink-0"></i>
+                            <span class="text-gray-300">Hinglish / English</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-feather="check" class="w-5 h-5 text-emerald-400 flex-shrink-0"></i>
+                            <span class="text-gray-300">Editable Google Docs delivery</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-feather="check" class="w-5 h-5 text-emerald-400 flex-shrink-0"></i>
+                            <span class="text-gray-300">Detailed scene-by-scene breakdown</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-feather="check" class="w-5 h-5 text-emerald-400 flex-shrink-0"></i>
+                            <span class="text-gray-300">Dialogue suggestions included</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="order.html" target="_blank" class="block w-full py-4 bg-emerald-500 hover:bg-emerald-600 text-black font-bold text-center rounded-lg transition-colors">
+                        Buy Now
+                    </a>
+                </div>
+                
+                <!-- Customization Add-on -->
+                <div class="p-8 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-emerald-500/30 transition-colors">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-white mb-2">Customization Add-on</h3>
+                        <div class="flex items-center justify-center gap-1">
+                            <span class="text-5xl font-bold text-white">₹99</span>
+                        </div>
+                        <p class="text-gray-400 mt-2">Additional service</p>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3">
+                            <i data-feather="check" class="w-5 h-5 text-emerald-400 flex-shrink-0"></i>
+                            <span class="text-gray-300">Customizable character names</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-feather="check" class="w-5 h-5 text-emerald-400 flex-shrink-0"></i>
+                            <span class="text-gray-300">Custom ending available</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-feather="check" class="w-5 h-5 text-emerald-400 flex-shrink-0"></i>
+                            <span class="text-gray-300">Channel-specific references included</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-feather="check" class="w-5 h-5 text-emerald-400 flex-shrink-0"></i>
+                            <span class="text-gray-300">Additional dialogue customization</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="order.html?plan=custom" target="_blank" class="block w-full py-4 bg-gray-800 hover:bg-gray-700 text-white font-bold text-center rounded-lg border border-gray-700 transition-colors">
+                        Add to Order
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Payment Methods -->
+            <div class="mt-16 p-8 rounded-2xl bg-gray-900/30 border border-gray-800">
+                <h3 class="text-2xl font-bold text-white mb-6 text-center">Payment Methods</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="flex items-center gap-4 p-4 rounded-xl bg-gray-800/50 border border-gray-700">
+                        <div class="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                            <i data-feather="smartphone" class="w-6 h-6 text-blue-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white">Google Pay</h4>
+                            <p class="text-sm text-gray-400">Instant UPI</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-4 p-4 rounded-xl bg-gray-800/50 border border-gray-700">
+                        <div class="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                            <i data-feather="credit-card" class="w-6 h-6 text-purple-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white">PhonePe</h4>
+                            <p class="text-sm text-gray-400">UPI & Wallet</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-4 p-4 rounded-xl bg-gray-800/50 border border-gray-700">
+                        <div class="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+                            <i data-feather="at-sign" class="w-6 h-6 text-emerald-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white">UPI ID</h4>
+                            <p class="text-sm text-gray-400">Any UPI App</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center text-gray-400 mt-6 text-sm">
+                    Send a screenshot of your payment on WhatsApp for instant delivery.
+                </p>
+            </div>
+            
+            <!-- Trust Badges -->
+            <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+                <trust-badge icon="shield" title="Secure Payment" subtitle="100% Safe UPI"></trust-badge>
+                <trust-badge icon="clock" title="5 Min Delivery" subtitle="Instant Google Doc"></trust-badge>
+                <trust-badge icon="refresh-cw" title="Revisions" subtitle="1 Free Edit"></trust-badge>
+                <trust-badge icon="message-circle" title="Support" subtitle="WhatsApp Help"></trust-badge>
+            </div>
+        </div>
+    </section>
+    </section>
+<!-- Professional Bottom Actions -->
+<section class="py-16 bg-gradient-to-t from-black via-darker to-dark border-t border-emerald-500/10">
+  <div class="container mx-auto px-4 text-center">
+
+    <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">
+      Need Help Before Ordering?
+    </h3>
+    <p class="text-gray-400 mb-8 max-w-xl mx-auto">
+      Read common questions or directly contact us for Best Minecraft scripts.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-6 justify-center">
+
+      <!-- FAQ Button -->
+      <a href="faq.html" target="_blank"
+        class="group inline-flex items-center justify-center gap-3 px-10 py-4 rounded-xl
+        bg-emerald-500/10 border border-emerald-500/30
+        text-emerald-400 font-semibold text-lg
+        hover:bg-emerald-500 hover:text-black
+        transition-all duration-300 shadow-lg shadow-emerald-500/10">
+
+        <i data-feather="help-circle"
+           class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+        FAQ
+      </a>
+
+      <!-- Contact Button -->
+      <a href="contact.html" target="_blank"
+        class="group inline-flex items-center justify-center gap-3 px-10 py-4 rounded-xl
+        bg-gray-900/60 border border-gray-700
+        text-gray-200 font-semibold text-lg
+        hover:border-emerald-500/50 hover:text-emerald-400
+        transition-all duration-300">
+
+        <i data-feather="mail"
+           class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+        Contact Us
+      </a>
+
+    </div>
+  </div>
+</section>
+    <custom-footer></custom-footer>
+    
+    <script src="script.js"></script>
+    <script>feather.replace();</script>
+</body>
+</html>
