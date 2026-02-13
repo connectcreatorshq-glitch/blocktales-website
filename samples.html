@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>orvicplayz Studio — premium Minecraft scripts</title>
-  <!-- minimal, modern, premium -->
+  <title>Sample scripts — orvicplayz Studio</title>
+  <meta name="description" content="Read sample Minecraft story scripts. Horror, survival, emotional and mystery story snippets.">
+  <!-- same premium fonts & assets -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <!-- feather icons (lightweight) -->
   <script src="https://unpkg.com/feather-icons"></script>
   <style>
-    /* ------------------------------------------------------
-       MODERN PREMIUM RESET & GLOBAL — soft, minimal, glassy 
-    ------------------------------------------------------- */
+    /* --------------------------------------------------------------
+       EXACT same design system as the generated premium index
+       – background, glass, spacing, animations, navbar, reveal
+    --------------------------------------------------------------- */
     * {
       margin: 0;
       padding: 0;
@@ -22,7 +23,6 @@
 
     html {
       scroll-behavior: smooth;
-      /* Remove scroll-padding-top - we'll handle it with JS */
     }
 
     body {
@@ -32,7 +32,6 @@
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      transition: background-color 0.2s;
       overflow-x: hidden;
     }
 
@@ -57,7 +56,7 @@
       pointer-events: none;
     }
 
-    /* subtle glass overlays for sections */
+    /* glass elements */
     .glass-card {
       background: rgba(255, 255, 255, 0.6);
       backdrop-filter: blur(12px) saturate(180%);
@@ -82,7 +81,7 @@
       padding: 0 2rem;
     }
 
-    /* typography — clean, airy */
+    /* typography */
     h1, h2, h3 {
       font-weight: 600;
       letter-spacing: -0.02em;
@@ -105,12 +104,7 @@
       font-size: 1.1rem;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* buttons — minimal, crisp */
+    /* buttons */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -131,7 +125,7 @@
 
     .btn-primary {
       background: #1a2b3e;
-      color: #e2e8f0; /* Changed to soft light gray-blue for better contrast and premium feel */
+      color: white;
       box-shadow: 0 8px 18px -8px rgba(20, 60, 100, 0.25);
     }
 
@@ -151,7 +145,79 @@
       border-color: #1a2b3e;
     }
 
-    /* navigation — becomes glass on scroll (js adds class) */
+    /* filter chips (custom for samples) */
+    .filter-chip {
+      padding: 0.6rem 1.6rem;
+      border-radius: 3rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.7);
+      color: #1e2f42;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .filter-chip:hover {
+      background: white;
+      border-color: #1a2b3e;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .filter-chip.active {
+      background: #1a2b3e;
+      color: white;
+      border-color: #1a2b3e;
+    }
+    .filter-chip.active:hover {
+      background: #1f334a;
+    }
+
+    /* sample cards (glass + hover) */
+    .sample-card {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 2rem;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px -12px rgba(0,0,0,0.12);
+      display: block; /* ensure cards are visible */
+    }
+
+    .sample-card:hover {
+      background: rgba(255, 255, 255, 0.7);
+      transform: translateY(-4px);
+      border-color: white;
+      box-shadow: 0 25px 35px -16px rgba(20, 60, 100, 0.2);
+    }
+
+    .genre-tag {
+      display: inline-block;
+      padding: 0.3rem 1.2rem;
+      border-radius: 3rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(2px);
+      border: 1px solid rgba(255,255,255,0.8);
+      margin-bottom: 1rem;
+    }
+
+    .script-preview {
+      background: rgba(255,255,255,0.4);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      margin: 1.2rem 0;
+      border: 1px solid rgba(255,255,255,0.7);
+      font-size: 0.95rem;
+      color: #1e2f42;
+      line-height: 1.6;
+    }
+
+    /* navigation — same style */
     .navbar {
       position: fixed;
       top: 0;
@@ -207,60 +273,21 @@
       padding: 6rem 0;
       position: relative;
       z-index: 5;
-      /* Remove scroll-margin-top - we'll handle it with JS */
     }
 
-    /* reveal animations (fade + slide) — hidden until scrolled */
+    /* reveal animation (fade + slide) */
     .reveal {
       opacity: 0;
       transform: translateY(24px);
-      transition: opacity 0.8s cubic-bezier(0.15, 0.85, 0.3, 1.05), transform 0.8s cubic-bezier(0.15, 0.85, 0.3, 1.05);
+      transition: opacity 0.7s cubic-bezier(0.23, 0.93, 0.34, 1), transform 0.7s cubic-bezier(0.23, 0.93, 0.34, 1);
     }
 
     .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
+      opacity: 1 !important;
+      transform: translateY(0) !important;
     }
 
-    /* card styles for scripts / features */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .premium-card {
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.7);
-      border-radius: 2rem;
-      padding: 2.2rem 1.8rem;
-      transition: all 0.25s ease;
-      box-shadow: 0 5px 15px -8px rgba(0,0,0,0.1);
-    }
-
-    .premium-card:hover {
-      transform: translateY(-4px);
-      background: rgba(255, 255, 255, 0.75);
-      border-color: white;
-      box-shadow: 0 20px 35px -15px rgba(0, 20, 40, 0.15);
-    }
-
-    .icon-circle {
-      width: 3.5rem;
-      height: 3.5rem;
-      border-radius: 50%;
-      background: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.02);
-    }
-
-    /* footer minimal */
+    /* footer same */
     .footer {
       padding: 3rem 2rem;
       text-align: center;
@@ -270,10 +297,18 @@
       backdrop-filter: blur(4px);
     }
 
-    /* responsive adjustments */
+    /* samples grid responsive */
+    .samples-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    /* responsive */
     @media (max-width: 900px) {
-      .feature-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .samples-grid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1.5rem;
       }
     }
 
@@ -284,215 +319,156 @@
       .container {
         padding: 0 1.2rem;
       }
-      .premium-card {
-        padding: 1.8rem;
-      }
-      .feature-grid {
-        grid-template-columns: 1fr;
+      .sample-card {
+        padding: 1.5rem;
       }
       h1 {
         font-size: clamp(2.4rem, 8vw, 3.2rem);
       }
     }
-
-    /* feather icons default */
-    i {
-      stroke-width: 1.5;
-    }
-
-    /* badge small */
-    .trust-badge {
-      background: rgba(255,255,255,0.5);
-      border-radius: 3rem;
-      padding: 0.5rem 1.2rem;
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255,255,255,0.7);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.95rem;
-    }
-
-    /* custom selection */
-    ::selection {
-      background: #c0d3eb;
-      color: #0b1c2e;
-    }
-
-    /* samples section (for anchor link) */
-    #samples {
-      /* No margin here - handled by JS */
-    }
   </style>
 </head>
 <body>
-  <!-- premium animated background (soft gradient + moving) -->
+  <!-- same premium background -->
   <div class="premium-bg"></div>
 
-  <!-- navbar component with scroll effect -->
+  <!-- navbar identical to index -->
   <nav class="navbar" id="navbar">
     <div class="nav-content">
       <span class="logo">orvicplayz<span style="font-weight:300;">.</span></span>
       <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#scripts">Scripts</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
-        <a href="order.html" class="btn btn-primary" style="padding:0.5rem 1.8rem;">Order</a>
+        <a href="index.html#home">Home</a>
+        <a href="index.html#scripts">Scripts</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="order.html" class="btn btn-primary" style="padding:0.5rem 1.8rem; color:#e2e8f0;">Order</a>
       </div>
     </div>
   </nav>
 
-  <!-- main content -->
   <main>
-    <!-- home / hero -->
-    <section id="home" style="padding-top: 10rem;">
+    <!-- samples section -->
+    <section style="padding-top: 9rem; padding-bottom: 4rem;">
       <div class="container">
-        <div class="reveal active" style="max-width: 820px; margin: 0 auto; text-align: center;">
-          <span class="trust-badge" style="margin-bottom: 1.5rem;"><i data-feather="check" width="18"></i> trusted by 15+ creators</span>
-          <h1>Minecraft scripts, <br>crafted for <span style="color:#20456e;">storytellers</span>.</h1>
-          <p style="font-size: 1.3rem; margin: 1.8rem 0 2.5rem; color:#2f4055;">Premium 10‑min scripts — horror, mystery, emotional. Instant delivery, full ownership.</p>
-          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-            <a href="#pricing" class="btn btn-primary">Browse scripts <i data-feather="arrow-right" width="20"></i></a>
-            <a href="#samples" class="btn btn-outline">Read sample</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- samples section (referenced by "Read sample" button) -->
-    <section id="samples" style="padding: 2rem 0 4rem;">
-      <div class="container">
-        <div class="reveal" style="text-align: center; max-width: 700px; margin: 0 auto;">
-          <h2>script previews</h2>
-          <p style="color:#3f4f64;">see the quality before you order — full scripts contain more scenes</p>
-        </div>
-        <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
-          <a href="samples.html" class="btn btn-outline">view all samples <i data-feather="arrow-right" width="18"></i></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- scripts / categories -->
-    <section id="scripts">
-      <div class="container">
-        <div class="reveal" style="text-align: center; max-width: 600px; margin: 0 auto 3rem;">
-          <h2>cinematic storylines</h2>
-          <p style="color:#3f4f64;">horror · survival · emotional · mystery — hinglish & english</p>
+        <!-- header with reveal -->
+        <div class="reveal active" style="text-align: center; max-width: 700px; margin: 0 auto 3rem;">
+          <h1>sample scripts</h1>
+          <p style="font-size: 1.25rem; color:#2f4057;">previews — full scripts contain more scenes & dialogue</p>
         </div>
 
-        <div class="feature-grid">
-          <!-- horror card -->
-          <div class="premium-card reveal">
-            <div class="icon-circle"><i data-feather="moon" width="28" style="color:#1e2f42;"></i></div>
-            <h3 style="margin-bottom: 0.75rem;">cursed seed</h3>
-            <p style="margin-bottom: 1.5rem;">Abandoned mansion, fog, whispers — a horror thriller with 3 characters. Hinglish</p>
-            <a href="order.html" style="font-weight:600; display:flex; align-items:center; gap:0.4rem;">full script <i data-feather="chevron-right" width="18"></i></a>
-          </div>
-          <!-- survival -->
-          <div class="premium-card reveal">
-            <div class="icon-circle"><i data-feather="compass" width="28"></i></div>
-            <h3 style="margin-bottom: 0.75rem;">100 days hardcore</h3>
-            <p style="margin-bottom: 1.5rem;">Solo survival, castle build, near‑death moments. Day‑by‑day narration.</p>
-            <a href="order.html" style="font-weight:600; display:flex; align-items:center; gap:0.4rem;">full script <i data-feather="chevron-right" width="18"></i></a>
-          </div>
-          <!-- emotional -->
-          <div class="premium-card reveal">
-            <div class="icon-circle"><i data-feather="heart" width="28"></i></div>
-            <h3 style="margin-bottom: 0.75rem;">the last dog</h3>
-            <p style="margin-bottom: 1.5rem;">Ruined village, an orphaned puppy, friendship — emotional journey.</p>
-            <a href="order.html" style="font-weight:600; display:flex; align-items:center; gap:0.4rem;">full script <i data-feather="chevron-right" width="18"></i></a>
-          </div>
-          <!-- mystery -->
-          <div class="premium-card reveal">
-            <div class="icon-circle"><i data-feather="search" width="28"></i></div>
-            <h3 style="margin-bottom: 0.75rem;">missing builder</h3>
-            <p style="margin-bottom: 1.5rem;">Redstone clues, secret room, detective dialogue. English.</p>
-            <a href="order.html" style="font-weight:600; display:flex; align-items:center; gap:0.4rem;">full script <i data-feather="chevron-right" width="18"></i></a>
-          </div>
+        <!-- filter chips (styled as premium) -->
+        <div class="reveal" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-bottom: 4rem;">
+          <button class="filter-chip active" data-filter="all" onclick="filterSamples('all')">All</button>
+          <button class="filter-chip" data-filter="horror" onclick="filterSamples('horror')">Horror</button>
+          <button class="filter-chip" data-filter="survival" onclick="filterSamples('survival')">Survival</button>
+          <button class="filter-chip" data-filter="emotional" onclick="filterSamples('emotional')">Emotional</button>
+          <button class="filter-chip" data-filter="mystery" onclick="filterSamples('mystery')">Mystery</button>
         </div>
-      </div>
-    </section>
 
-    <!-- pricing summary -->
-    <section id="pricing">
-      <div class="container">
-        <div class="reveal" style="text-align: center; margin-bottom: 3rem;">
-          <h2>simple, fair pricing</h2>
-          <p>no hidden fees · lifetime access · free minor edits</p>
-        </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-          <!-- standard card -->
-          <div class="premium-card reveal" style="padding: 2.5rem 2rem;">
-            <h3 style="font-size: 2rem; margin-bottom: 0.2rem;">₹299</h3>
-            <p style="margin-bottom: 2rem;">per script · most popular</p>
-            <ul style="list-style: none; margin-bottom: 2rem; color:#2f3f53;">
-              <li style="display: flex; gap: 0.8rem; margin-bottom: 1rem;"><i data-feather="check" width="20" style="color:#204e6e;"></i>Complete 10–11 minute script</li>
-              <li style="display: flex; gap: 0.8rem; margin-bottom: 1rem;"><i data-feather="check" width="20"></i>scene breakdown + dialogue</li>
-              <li style="display: flex; gap: 0.8rem; margin-bottom: 1rem;"><i data-feather="check" width="20"></i>hinglish / english</li>
-              <li style="display: flex; gap: 0.8rem;"><i data-feather="check" width="20"></i>google docs delivery</li>
-            </ul>
-            <a href="order.html" class="btn btn-primary" style="width:100%;">select</a>
-          </div>
-          <!-- customization add-on -->
-          <div class="premium-card reveal" style="padding: 2.5rem 2rem; background: rgba(255, 255, 255, 0.7);">
-            <h3 style="font-size: 2rem; margin-bottom: 0.2rem;">+ ₹99</h3>
-            <p style="margin-bottom: 2rem;">customization add-on</p>
-            <ul style="list-style: none; margin-bottom: 2rem;">
-              <li style="display: flex; gap: 0.8rem; margin-bottom: 1rem;"><i data-feather="edit" width="20"></i>character names / ending</li>
-              <li style="display: flex; gap: 0.8rem; margin-bottom: 1rem;"><i data-feather="edit" width="20"></i>channel references</li>
-              <li style="display: flex; gap: 0.8rem;"><i data-feather="edit" width="20"></i>extra dialogue polish</li>
-            </ul>
-            <a href="order.html?plan=custom" class="btn btn-outline" style="width:100%;">add to order</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ preview -->
-    <section id="faq">
-      <div class="container">
-        <div class="reveal" style="max-width: 800px; margin: 0 auto;">
-          <h2 style="text-align: center;">frequently asked</h2>
-          <div style="margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.2rem;">
-            <div class="glass-panel" style="padding: 1.5rem 2rem;">
-              <h3 style="font-weight:600; margin-bottom:0.4rem;">⏱️ delivery time?</h3>
-              <p style="margin:0;">Instant — 5 to 30 min via Google Docs. Custom scripts under 24h.</p>
+        <!-- samples grid (2 columns on desktop, 1 on mobile) -->
+        <div class="samples-grid" id="samplesGrid">
+          <!-- Horror sample -->
+          <div class="sample-card horror reveal">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <span class="genre-tag" style="background: rgba(200, 90, 90, 0.2); color: #a13a3a;">Horror</span>
+              <span style="color:#3f556a; font-weight:500;">10:30</span>
             </div>
-            <div class="glass-panel" style="padding: 1.5rem 2rem;">
-              <h3 style="font-weight:600; margin-bottom:0.4rem;">✏️ can i request changes?</h3>
-              <p style="margin:0;">Yes, 1 free revision included; ₹99 for deeper customization.</p>
+            <h3 style="font-size:1.8rem; margin:0.5rem 0 0.2rem;">The Cursed Seed</h3>
+            <div class="script-preview">
+              <p style="margin-bottom:0.8rem;"><span style="font-weight:600; color:#1e3a5f;">[Scene 1: Dark Forest]</span></p>
+              <p style="font-style:italic; margin-bottom:0.8rem;">"Player spawn hota hai ek dense dark forest mein. Immediately atmosphere tense hai - fog hai, strange noises aa rahe hain..."</p>
+              <p><span style="font-weight:600;">Player (whisper):</span> "Ye jagah sahi nahi lag rahi... par diamond yahi kahi hone chahiye..."</p>
+              <p style="margin-top:0.5rem;">Suddenly, distance mein ek structure dikhta hai - ek abandoned mansion jo map pe marked nahi tha...</p>
             </div>
-            <div class="glass-panel" style="padding: 1.5rem 2rem;">
-              <h3 style="font-weight:600; margin-bottom:0.4rem;">🛡️ copyright safe?</h3>
-              <p style="margin:0;">100% original, full rights transfer. No YouTube strikes.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="color:#3a4e64; font-size:0.95rem;">Hinglish · 3 characters</span>
+              <a href="order.html?script=cursed-seed" class="btn-outline" style="padding:0.5rem 1.5rem; border-radius:3rem; font-size:0.95rem;">get full <i data-feather="external-link" width="16"></i></a>
             </div>
           </div>
-          <div style="text-align: center; margin-top: 3rem;">
-            <a href="faq.html" class="btn btn-outline">read full FAQ</a>
+
+          <!-- Survival sample -->
+          <div class="sample-card survival reveal">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <span class="genre-tag" style="background: rgba(60, 140, 100, 0.2); color: #1f7042;">Survival</span>
+              <span style="color:#3f556a; font-weight:500;">11:00</span>
+            </div>
+            <h3 style="font-size:1.8rem; margin:0.5rem 0 0.2rem;">100 Days Hardcore</h3>
+            <div class="script-preview">
+              <p><span style="font-weight:600; color:#1e3a5f;">[Day 1: Sunrise]</span></p>
+              <p style="font-style:italic;">"Player hardcore mode mein spawn hota hai. Health bar ka dhyan rahe - ek bhi death = game over."</p>
+              <p><span style="font-weight:600;">Player:</span> "Goal clear hai - survive karna hai 100 days aur ek massive castle banana hai..."</p>
+              <p>Pehla task: shelter aur food. Player quickly trees torne lagta hai par suddenly...</p>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="color:#3a4e64; font-size:0.95rem;">Hinglish · solo</span>
+              <a href="order.html?script=100-days" class="btn-outline" style="padding:0.5rem 1.5rem; border-radius:3rem; font-size:0.95rem;">get full <i data-feather="external-link" width="16"></i></a>
+            </div>
           </div>
+
+          <!-- Emotional sample -->
+          <div class="sample-card emotional reveal">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <span class="genre-tag" style="background: rgba(50, 110, 160, 0.2); color: #1d5b8c;">Emotional</span>
+              <span style="color:#3f556a; font-weight:500;">10:45</span>
+            </div>
+            <h3 style="font-size:1.8rem; margin:0.5rem 0 0.2rem;">The Last Dog</h3>
+            <div class="script-preview">
+              <p><span style="font-weight:600; color:#1e3a5f;">[Scene: Ruined Village]</span></p>
+              <p style="font-style:italic;">"Player ek destroyed village mein ghoom raha hai. Sab kuch jal chuka hai, bas ek puppy bacha hai..."</p>
+              <p><span style="font-weight:600;">Player (softly):</span> "Tu akela bach gaya? Chal mere saath..."</p>
+              <p>Player puppy ko bone deta hai. Friendship start hoti hai. Montage: building house together, mining together...</p>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="color:#3a4e64; font-size:0.95rem;">Hinglish · 2 characters</span>
+              <a href="order.html?script=last-dog" class="btn-outline" style="padding:0.5rem 1.5rem; border-radius:3rem; font-size:0.95rem;">get full <i data-feather="external-link" width="16"></i></a>
+            </div>
+          </div>
+
+          <!-- Mystery sample -->
+          <div class="sample-card mystery reveal">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <span class="genre-tag" style="background: rgba(120, 80, 160, 0.2); color: #5e3c9b;">Mystery</span>
+              <span style="color:#3f556a; font-weight:500;">11:15</span>
+            </div>
+            <h3 style="font-size:1.8rem; margin:0.5rem 0 0.2rem;">The Missing Builder</h3>
+            <div class="script-preview">
+              <p><span style="font-weight:600; color:#1e3a5f;">[Scene: Server Spawn]</span></p>
+              <p style="font-style:italic;">"The server's top builder, “SteveMaster,” has gone missing. Strange clues were found inside his house…"</p>
+              <p><span style="font-weight:600;">Detective (Player):</span> "This redstone circuit pattern is unusual… almost as if it's hiding a message…"</p>
+              <p>The player follows the clues — a secret room, an encrypted book, and a mysterious coordinate…</p>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="color:#3a4e64; font-size:0.95rem;">English · 4+ characters</span>
+              <a href="order.html?script=missing-builder" class="btn-outline" style="padding:0.5rem 1.5rem; border-radius:3rem; font-size:0.95rem;">get full <i data-feather="external-link" width="16"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bottom CTA -->
+        <div class="reveal" style="text-align: center; margin-top: 4rem;">
+          <p style="margin-bottom: 1.8rem; color:#31465c;">plus 10+ more scripts available — instant delivery</p>
+          <a href="order.html" class="btn btn-primary" style="padding:1rem 3rem;">Browse all scripts <i data-feather="arrow-right" width="20"></i></a>
         </div>
       </div>
     </section>
 
-    <!-- contact area -->
-    <section id="contact" style="padding: 4rem 0;">
+    <!-- bottom help glass card (identical to order page) -->
+    <section style="padding: 2rem 0 5rem;">
       <div class="container">
-        <div class="reveal glass-card" style="padding: 4rem 2.5rem; text-align: center;">
-          <h2 style="margin-bottom: 1rem;">let’s work together</h2>
-          <p style="max-width: 550px; margin: 0 auto 2rem;">DM on Discord, Instagram or email — reply within 2h.</p>
-          <div style="display: flex; gap: 1.8rem; justify-content: center; flex-wrap: wrap;">
-            <a href="contact.html" style="display: flex; align-items: center; gap: 0.5rem;"><i data-feather="instagram"></i> jod_enix</a>
-            <a href="contact.html" style="display: flex; align-items: center; gap: 0.5rem;"><i data-feather="mail"></i> contact.jodenix</a>
-            <a href="contact.html" style="display: flex; align-items: center; gap: 0.5rem;"><i data-feather="message-circle"></i> discord</a>
+        <div class="glass-card reveal" style="padding: 4rem 2rem; text-align: center; max-width: 800px; margin:0 auto;">
+          <h2 style="margin-bottom: 0.8rem;">need help before ordering?</h2>
+          <p style="margin-bottom: 2.2rem; color:#2f4057;">read FAQ or contact us directly</p>
+          <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+            <a href="faq.html" class="btn btn-outline" style="gap:0.6rem;"><i data-feather="help-circle"></i> FAQ</a>
+            <a href="contact.html" class="btn btn-outline" style="gap:0.6rem;"><i data-feather="mail"></i> Contact</a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- footer -->
+  <!-- same footer -->
   <footer class="footer">
     <p style="font-size: 0.95rem;">© 2026 orvicplayz Studio — premium Minecraft scripts for creators</p>
   </footer>
@@ -502,20 +478,13 @@
     feather.replace({ width: 20, height: 20 });
   </script>
 
-  <!-- FIXED ANCHOR SCROLLING - with proper navbar height calculation -->
+  <!-- all interactions + navbar scroll + reveal + filter (smooth) -->
   <script>
     (function() {
       'use strict';
 
-      // Get navbar element
+      // navbar scroll glass effect
       const navbar = document.getElementById('navbar');
-      
-      // Function to get current navbar height (accounts for scroll state)
-      function getNavbarHeight() {
-        return navbar ? navbar.offsetHeight : 80; // fallback to 80px
-      }
-
-      // Navbar scroll glass effect
       window.addEventListener('scroll', () => {
         if (window.scrollY > 40) {
           navbar.classList.add('nav-scrolled');
@@ -530,177 +499,79 @@
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('active');
-            observer.unobserve(entry.target);
+            observer.unobserve(entry.target); // one-time
           }
         });
       }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-
+      
+      // Re-run observer when new elements might be added (filter doesn't add/remove, just hides)
       revealElements.forEach(el => observer.observe(el));
 
-      // FIXED: Anchor scroll handler with proper offset calculation
-      function scrollToSection(targetId) {
-        const targetElement = document.querySelector(targetId);
-        
-        if (!targetElement) return;
-        
-        // Temporarily disable smooth scroll to get accurate position
-        const html = document.documentElement;
-        const originalScrollBehavior = html.style.scrollBehavior;
-        html.style.scrollBehavior = 'auto';
-        
-        // Get navbar height
-        const navbarHeight = getNavbarHeight();
-        
-        // Get target position relative to document
-        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-        
-        // Calculate offset position (navbar height + 20px extra padding)
-        const offsetPosition = targetPosition - navbarHeight - 20;
-        
-        // Scroll to position
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-        
-        // Restore original scroll behavior after a short delay
-        setTimeout(() => {
-          html.style.scrollBehavior = originalScrollBehavior;
-        }, 100);
-        
-        // Update URL hash without jumping
-        history.pushState(null, null, targetId);
-      }
-
-      // Handle click on anchor links
+      // smooth scroll for anchor links (if any)
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           const href = this.getAttribute('href');
-          
-          // Skip if it's just "#" or empty
           if (href === "#" || href === "") return;
-          
-          // Skip if it's a link to another page with hash (like order.html#section)
-          if (href.includes('.html')) return;
-          
-          e.preventDefault();
-          scrollToSection(href);
-        });
-      });
-
-      // Handle initial hash on page load
-      function handleInitialHash() {
-        if (window.location.hash && window.location.hash !== '#') {
-          // Small delay to ensure DOM is fully rendered
-          setTimeout(() => {
-            scrollToSection(window.location.hash);
-          }, 200);
-        }
-      }
-
-      // Handle hash changes (browser back/forward)
-      window.addEventListener('popstate', () => {
-        if (window.location.hash && window.location.hash !== '#') {
-          scrollToSection(window.location.hash);
-        }
-      });
-
-      // Run on load
-      window.addEventListener('load', handleInitialHash);
-
-      // Highlight active nav link based on scroll position
-      function updateActiveNavLink() {
-        const sections = document.querySelectorAll('section[id]');
-        const scrollPosition = window.scrollY + getNavbarHeight() + 30;
-        const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-        
-        let activeFound = false;
-        
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop;
-          const sectionBottom = sectionTop + section.offsetHeight;
-          const sectionId = section.getAttribute('id');
-          
-          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-            navLinks.forEach(link => {
-              link.classList.remove('active-nav');
-              if (link.getAttribute('href') === `#${sectionId}`) {
-                link.classList.add('active-nav');
-                activeFound = true;
-              }
-            });
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         });
-        
-        // If no section is active (e.g., at the very top), remove all active classes
-        if (!activeFound) {
-          navLinks.forEach(link => link.classList.remove('active-nav'));
-        }
-      }
-
-      // Add active nav style
-      const style = document.createElement('style');
-      style.textContent = `
-        .nav-links a.active-nav {
-          color: #1a2b3e;
-          font-weight: 600;
-          position: relative;
-        }
-        .nav-links a.active-nav::after {
-          content: '';
-          position: absolute;
-          bottom: -4px;
-          left: 0;
-          width: 100%;
-          height: 2px;
-          background: #1a2b3e;
-          border-radius: 2px;
-        }
-      `;
-      document.head.appendChild(style);
-
-      // Update active nav link on scroll (with debounce for performance)
-      let scrollTimeout;
-      window.addEventListener('scroll', () => {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => {
-          updateActiveNavLink();
-        }, 10);
-      });
-      
-      // Run once on load
-      updateActiveNavLink();
-
-      // Update navbar height calculation on resize
-      window.addEventListener('resize', () => {
-        updateActiveNavLink();
       });
     })();
-  </script>
 
-  <style>
-    /* ensure .reveal is hidden until active */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s cubic-bezier(0.23, 0.93, 0.34, 1), transform 0.7s cubic-bezier(0.23, 0.93, 0.34, 1);
+    // filter samples (improved functionality)
+    function filterSamples(genre) {
+      const cards = document.querySelectorAll('.sample-card');
+      let visibleCount = 0;
+      
+      cards.forEach(card => {
+        if (genre === 'all' || card.classList.contains(genre)) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // update active chip
+      const chips = document.querySelectorAll('.filter-chip');
+      chips.forEach(chip => {
+        const filter = chip.getAttribute('data-filter') || 'all';
+        if (filter === genre) {
+          chip.classList.add('active');
+        } else {
+          chip.classList.remove('active');
+        }
+      });
+
+      // Optional: Show a message if no items visible (though we always have items)
+      const grid = document.getElementById('samplesGrid');
+      let noItemsMsg = document.getElementById('no-items-message');
+      
+      if (visibleCount === 0) {
+        if (!noItemsMsg) {
+          noItemsMsg = document.createElement('div');
+          noItemsMsg.id = 'no-items-message';
+          noItemsMsg.style.textAlign = 'center';
+          noItemsMsg.style.padding = '3rem';
+          noItemsMsg.style.color = '#2d3a4e';
+          noItemsMsg.style.gridColumn = '1 / -1';
+          noItemsMsg.innerHTML = 'No scripts in this category yet — but coming soon!';
+          grid.appendChild(noItemsMsg);
+        }
+      } else {
+        if (noItemsMsg) {
+          noItemsMsg.remove();
+        }
+      }
     }
-    .reveal.active {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-    }
-    /* minor fix for initial hero (already active) */
-    #home .reveal.active {
-      opacity: 1;
-    }
-    /* improve card spacing */
-    .premium-card i {
-      stroke-width: 1.8;
-    }
-    /* smooth transitions on nav */
-    .navbar {
-      transition: background 0.3s ease, backdrop-filter 0.3s ease, padding 0.3s ease;
-    }
-  </style>
+
+    // ensure all cards are visible on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      filterSamples('all');
+    });
+  </script>
 </body>
 </html>
