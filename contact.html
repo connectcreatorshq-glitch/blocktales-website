@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact us — orvicplayz Studio</title>
+  <meta name="description" content="Contact BlockTales Studio for Minecraft story scripts. WhatsApp, Instagram and Email support available.">
+  <!-- same premium fonts & assets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    /* --------------------------------------------------------------
+       EXACT same design system as the generated premium index
+       – background, glass, spacing, animations, navbar, reveal
+    --------------------------------------------------------------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f5f7fa;
+      color: #1e1e2f;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* premium animated background — soft glass + moving gradient */
+    .premium-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      background: linear-gradient(145deg, #ffffff 0%, #f2f5fa 55%, #eef0f5 100%);
+    }
+
+    .premium-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 40%, rgba(180, 210, 255, 0.3) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(160, 200, 240, 0.2) 0%, transparent 55%),
+                  repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 8px);
+      pointer-events: none;
+    }
+
+    /* glass elements */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 2.5rem;
+      box-shadow: 0 15px 35px -10px rgba(0, 20, 30, 0.1);
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 2rem;
+    }
+
+    /* consistent container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* typography */
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #0b1c2e;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 8vw, 4.8rem);
+    }
+
+    h2 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #2d3a4e;
+      font-weight: 400;
+      font-size: 1.1rem;
+    }
+
+    /* buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.9rem 2.2rem;
+      border-radius: 3rem;
+      font-weight: 550;
+      font-size: 1.1rem;
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+      background: white;
+      color: #0e1f32;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      border: 1px solid rgba(0,0,0,0.02);
+    }
+
+    .btn-primary {
+      background: #1a2b3e;
+      color: white;
+      box-shadow: 0 8px 18px -8px rgba(20, 60, 100, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: #1f334a;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px -10px rgba(20, 60, 100, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(26, 43, 62, 0.2);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.6);
+      border-color: #1a2b3e;
+    }
+
+    /* contact cards (glass, with brand accent) */
+    .contact-card {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 2rem;
+      padding: 2.5rem 2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px -12px rgba(0,0,0,0.12);
+      text-align: center;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-card:hover {
+      background: rgba(255, 255, 255, 0.7);
+      transform: translateY(-4px);
+      border-color: white;
+      box-shadow: 0 25px 35px -16px rgba(20, 60, 100, 0.2);
+    }
+
+    /* card accent colors on hover (using border) */
+    .contact-card.discord:hover {
+      border-color: #5865f2;
+    }
+    .contact-card.instagram:hover {
+      border-color: #e1306c;
+    }
+    .contact-card.email:hover {
+      border-color: #0284c7;
+    }
+
+    .icon-circle {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      transition: transform 0.25s ease;
+    }
+
+    .contact-card:hover .icon-circle {
+      transform: scale(1.1);
+    }
+
+    .copy-section {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.4);
+      padding: 0.3rem 0.8rem 0.3rem 1.2rem;
+      border-radius: 3rem;
+      border: 1px solid rgba(255,255,255,0.7);
+      margin-top: 1rem;
+      backdrop-filter: blur(2px);
+    }
+
+    .copy-btn {
+      background: rgba(255,255,255,0.5);
+      border: none;
+      border-radius: 2rem;
+      padding: 0.3rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #1e2f42;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+
+    .copy-btn:hover {
+      background: white;
+      border-color: #1a2b3e;
+    }
+
+    /* quick contact form (glass) */
+    .form-glass {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 2.5rem;
+      padding: 2.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: #1f334a;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border-radius: 2rem;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      font-size: 1rem;
+      color: #0b1c2e;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+      border-color: #1a2b3e;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(26, 43, 62, 0.08);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* working hours chip */
+    .hours-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.7rem 1.8rem;
+      border-radius: 3rem;
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.7);
+      color: #1e2f42;
+      font-size: 0.95rem;
+    }
+
+    /* navigation — same style */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+
+    .nav-scrolled {
+      backdrop-filter: blur(14px) saturate(200%);
+      -webkit-backdrop-filter: blur(14px) saturate(200%);
+      background: rgba(255, 255, 255, 0.5);
+      border-bottom: 1px solid rgba(255,255,255,0.8);
+      padding: 0.8rem 2rem;
+    }
+
+    .nav-content {
+      width: 100%;
+      max-width: 1280px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 650;
+      font-size: 1.8rem;
+      letter-spacing: -0.03em;
+      color: #0b1c2e;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      color: #1e2e41;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #000;
+    }
+
+    /* section spacing */
+    section {
+      padding: 6rem 0;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* reveal animation (fade + slide) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.23, 0.93, 0.34, 1), transform 0.7s cubic-bezier(0.23, 0.93, 0.34, 1);
+    }
+
+    .reveal.active {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    /* footer same */
+    .footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      color: #3d4f63;
+      border-top: 1px solid rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(4px);
+    }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;
+      }
+      .container {
+        padding: 0 1.2rem;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-glass {
+        padding: 1.8rem;
+      }
+    }
+
+    /* utility */
+    .text-small {
+      font-size: 0.9rem;
+      color: #3f556a;
+    }
+  </style>
+</head>
+<body>
+  <!-- same premium background -->
+  <div class="premium-bg"></div>
+
+  <!-- navbar identical to index -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <span class="logo">blocktales<span style="font-weight:300;">.</span></span>
+      <div class="nav-links">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#scripts">Scripts</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="order.html" class="btn btn-primary" style="padding:0.5rem 1.8rem; color:#e2e8f0;">Order</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- contact section -->
+    <section style="padding-top: 9rem; padding-bottom: 4rem;">
+      <div class="container">
+        <!-- header with reveal -->
+        <div class="reveal active" style="text-align: center; max-width: 700px; margin: 0 auto 3rem;">
+          <h1>contact us</h1>
+          <p style="font-size: 1.25rem; color:#2f4057;">have questions? fast response guaranteed - within 2h</p>
+        </div>
+
+        <!-- contact cards grid (3 columns) -->
+        <div class="reveal" style="margin-bottom: 5rem;">
+          <div class="contact-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+            
+            <!-- Discord card (with copy) -->
+            <div class="contact-card discord">
+              <div class="icon-circle" style="background: rgba(88, 101, 242, 0.15);">
+                <i data-feather="message-square" width="28" style="color:#5865f2;"></i>
+              </div>
+              <h3 style="font-size:1.6rem; margin-bottom:0.3rem;">Discord</h3>
+              <p style="color:#3f556a; margin-bottom:1.2rem;">reach out via Discord</p>
+              
+              <div class="copy-section">
+                <span style="font-weight:500; color:#1e2f42;" id="discordID">orvicplayz_yt</span>
+                <button class="copy-btn" onclick="copyDiscord()">Copy</button>
+              </div>
+              <p id="copyMsg" style="color: #1a7b4a; font-size:0.9rem; margin-top:0.8rem; opacity:0; transition:opacity 0.2s;">✓ copied to clipboard</p>
+            </div>
+
+            <!-- Instagram card -->
+            <a href="https://www.instagram.com/jod_enix/" target="_blank" class="contact-card instagram" style="text-decoration: none; color: inherit; display: flex;">
+              <div class="icon-circle" style="background: rgba(225, 48, 108, 0.15);">
+                <i data-feather="instagram" width="28" style="color:#e1306c;"></i>
+              </div>
+              <h3 style="font-size:1.6rem; margin-bottom:0.3rem;">Instagram</h3>
+              <p style="color:#3f556a; margin-bottom:1.2rem;">DM for orders · new script updates</p>
+              <div style="margin-top: auto; display: flex; align-items: center; justify-content: center; gap:0.4rem; color:#e1306c; font-weight:500;">
+                follow me <i data-feather="arrow-up-right" width="18"></i>
+              </div>
+            </a>
+
+            <!-- Email card -->
+            <a href="mailto:contact.jodenix@gmail.com" target="_blank" class="contact-card email" style="text-decoration: none; color: inherit; display: flex;">
+              <div class="icon-circle" style="background: rgba(2, 132, 199, 0.15);">
+                <i data-feather="mail" width="28" style="color:#0284c7;"></i>
+              </div>
+              <h3 style="font-size:1.6rem; margin-bottom:0.3rem;">Email support</h3>
+              <p style="color:#3f556a; margin-bottom:1.2rem;">detailed queries · 24h response</p>
+              <div style="margin-top: auto; display: flex; align-items: center; justify-content: center; gap:0.4rem; color:#0284c7; font-weight:500;">
+                contact.jodenix@gmail.com <i data-feather="arrow-up-right" width="18"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- quick contact form (glass) -->
+        <div class="reveal" style="max-width: 700px; margin: 0 auto;">
+          <div class="form-glass">
+            <h2 style="text-align: center; margin-bottom: 2rem;">quick message</h2>
+            <form id="contactForm">
+              <div class="form-group">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" required placeholder="your name">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email or Discord</label>
+                <input type="text" class="form-control" required placeholder="contact details">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Message</label>
+                <textarea class="form-control" required placeholder="how can we help?"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width:100%; padding:1rem;">
+                send message <i data-feather="send" width="18"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- working hours chip -->
+        <div class="reveal" style="text-align: center; margin-top: 3rem;">
+          <div class="hours-chip">
+            <i data-feather="clock" width="18" style="color:#1f334a;"></i>
+            <span>Active hours: 10 AM – 10 PM IST (Indian time)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- same footer -->
+  <footer class="footer">
+    <p style="font-size: 0.95rem;">© 2026 orvicplayz Studio — premium Minecraft scripts for creators</p>
+  </footer>
+
+  <!-- feather icons init -->
+  <script>
+    feather.replace({ width: 20, height: 20 });
+  </script>
+
+  <!-- all interactions + navbar scroll + reveal + copy function + form -->
+  <script>
+    (function() {
+      'use strict';
+
+      // navbar scroll glass effect
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+          navbar.classList.add('nav-scrolled');
+        } else {
+          navbar.classList.remove('nav-scrolled');
+        }
+      });
+
+      // Intersection Observer for reveal animations
+      const revealElements = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target); // one-time
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+      
+      revealElements.forEach(el => observer.observe(el));
+
+      // smooth scroll for anchor links (if any)
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === "#" || href === "") return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    })();
+
+    // copy discord username
+    function copyDiscord() {
+      const text = document.getElementById("discordID").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const msg = document.getElementById("copyMsg");
+        msg.style.opacity = '1';
+        setTimeout(() => {
+          msg.style.opacity = '0';
+        }, 2000);
+      }).catch(err => {
+        console.error('copy failed', err);
+      });
+    }
+
+    // contact form submit (prevent default + show message)
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('contactForm');
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          alert('✨ Message sent (demo) — we\'ll get back to you soon!');
+          form.reset();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

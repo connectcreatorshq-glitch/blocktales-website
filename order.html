@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order your script — orvicplayz Studio</title>
+  <meta name="description" content="Order your Minecraft story script. Fill the form and get instant delivery. Custom orders available.">
+  <!-- same premium fonts & assets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    /* --------------------------------------------------------------
+       EXACT same design system as the generated premium index
+       – background, glass, spacing, animations, navbar, reveal
+    --------------------------------------------------------------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f5f7fa;
+      color: #1e1e2f;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* premium animated background — soft glass + moving gradient */
+    .premium-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      background: linear-gradient(145deg, #ffffff 0%, #f2f5fa 55%, #eef0f5 100%);
+    }
+
+    .premium-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 40%, rgba(180, 210, 255, 0.3) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(160, 200, 240, 0.2) 0%, transparent 55%),
+                  repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 8px);
+      pointer-events: none;
+    }
+
+    /* glass elements */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 2.5rem;
+      box-shadow: 0 15px 35px -10px rgba(0, 20, 30, 0.1);
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 2rem;
+    }
+
+    /* consistent container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* typography */
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #0b1c2e;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 8vw, 4.8rem);
+    }
+
+    h2 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #2d3a4e;
+      font-weight: 400;
+      font-size: 1.1rem;
+    }
+
+    /* buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.9rem 2.2rem;
+      border-radius: 3rem;
+      font-weight: 550;
+      font-size: 1.1rem;
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+      background: white;
+      color: #0e1f32;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      border: 1px solid rgba(0,0,0,0.02);
+    }
+
+    .btn-primary {
+      background: #1a2b3e;
+      color: white;
+      box-shadow: 0 8px 18px -8px rgba(20, 60, 100, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: #1f334a;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px -10px rgba(20, 60, 100, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(26, 43, 62, 0.2);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.6);
+      border-color: #1a2b3e;
+    }
+
+    /* navigation — same style */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+
+    .nav-scrolled {
+      backdrop-filter: blur(14px) saturate(200%);
+      -webkit-backdrop-filter: blur(14px) saturate(200%);
+      background: rgba(255, 255, 255, 0.5);
+      border-bottom: 1px solid rgba(255,255,255,0.8);
+      padding: 0.8rem 2rem;
+    }
+
+    .nav-content {
+      width: 100%;
+      max-width: 1280px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 650;
+      font-size: 1.8rem;
+      letter-spacing: -0.03em;
+      color: #0b1c2e;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      color: #1e2e41;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #000;
+    }
+
+    /* section spacing */
+    section {
+      padding: 6rem 0;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* reveal animation (fade + slide) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.23, 0.93, 0.34, 1), transform 0.7s cubic-bezier(0.23, 0.93, 0.34, 1);
+    }
+
+    .reveal.active {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    /* form elements — refined, glassy, minimal */
+    .form-card {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 2.5rem;
+      padding: 2.5rem;
+      box-shadow: 0 15px 35px -10px rgba(0,20,30,0.1);
+    }
+
+    .summary-card {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 2rem;
+      padding: 2rem;
+      box-shadow: 0 10px 25px -12px rgba(0,0,0,0.1);
+    }
+
+    label {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: #1f334a;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border-radius: 2rem;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      font-size: 1rem;
+      color: #0b1c2e;
+      outline: none;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(2px);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #1a2b3e;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(26, 43, 62, 0.08);
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      background: rgba(255,255,255,0.4);
+      padding: 0.8rem 1.5rem;
+      border-radius: 3rem;
+      border: 1px solid rgba(255,255,255,0.7);
+    }
+
+    .radio-group label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    input[type="radio"] {
+      appearance: none;
+      width: 1.2rem;
+      height: 1.2rem;
+      border: 2px solid #1a2b3e;
+      border-radius: 50%;
+      background: transparent;
+      transition: 0.1s;
+      padding: 0;
+      margin: 0;
+    }
+    input[type="radio"]:checked {
+      background: #1a2b3e;
+      box-shadow: inset 0 0 0 4px white;
+    }
+
+    .info-box {
+      background: rgba(255,255,255,0.4);
+      border-radius: 2rem;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.8);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .price-line {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      color: #1e2f42;
+      font-weight: 450;
+    }
+
+    .total-row {
+      border-top: 1px solid rgba(0,0,0,0.05);
+      margin-top: 0.5rem;
+      padding-top: 1rem;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #0b1c2e;
+    }
+
+    .sticky {
+      position: sticky;
+      top: 7rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.7);
+      margin: 1rem 0;
+    }
+
+    /* footer same */
+    .footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      color: #3d4f63;
+      border-top: 1px solid rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(4px);
+    }
+
+    /* responsive */
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;
+      }
+      .container {
+        padding: 0 1.2rem;
+      }
+      .form-card {
+        padding: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- same premium background -->
+  <div class="premium-bg"></div>
+
+  <!-- navbar identical to index -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <span class="logo">blocktales<span style="font-weight:300;">.</span></span>
+      <div class="nav-links">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#scripts">Scripts</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="order.html" class="btn btn-primary" style="padding:0.5rem 1.8rem; color:#e2e8f0;">Order</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- main order content -->
+  <main>
+    <section style="padding-top: 9rem; padding-bottom: 4rem;">
+      <div class="container">
+        <!-- heading with reveal -->
+        <div class="reveal active" style="text-align: center; max-width: 700px; margin: 0 auto 4rem;">
+          <h1>Order your script</h1>
+          <p style="font-size: 1.25rem; color:#2d4055;">Fill the form, complete payment, and receive your script in minutes.</p>
+        </div>
+
+        <!-- grid: form + summary (same structure as original but glassy) -->
+        <div class="grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+          <!-- left column: order form (glass) -->
+          <div class="form-card reveal">
+            <form id="orderForm" style="display: flex; flex-direction: column; gap: 2rem;">
+              <!-- name + contact row -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div>
+                  <label>Your name</label>
+                  <input type="text" required placeholder="e.g. Alex" value="Test User">
+                </div>
+                <div>
+                  <label>Email or WhatsApp</label>
+                  <input type="text" required placeholder="example@gmail.com / +91..." value="test@blocktales.com">
+                </div>
+              </div>
+
+              <!-- script type + language -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div>
+                  <label>Script type</label>
+                  <select id="scriptType" required>
+                    <option value="">— select —</option>
+                    <option value="horror" selected>Horror Story</option>
+                    <option value="survival">Survival Challenge</option>
+                    <option value="emotional">Emotional Story</option>
+                    <option value="mystery">Mystery / Detective</option>
+                    <option value="custom">Custom Story (coming soon)</option>
+                  </select>
+                </div>
+                <div>
+                  <label>Language</label>
+                  <select id="language" required>
+                    <option value="">Select</option>
+                    <option value="hinglish" selected>Hinglish (Hindi + English)</option>
+                    <option value="english">English</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- customization radio (premium radio group) -->
+              <div>
+                <label style="margin-bottom: 0.8rem;">Customization?</label>
+                <div class="radio-group">
+                  <label>
+                    <input type="radio" name="customization" value="no" checked onchange="updateTotal()"> No (₹299)
+                  </label>
+                  <label>
+                    <input type="radio" name="customization" value="yes" onchange="updateTotal()"> Yes (+₹99)
+                  </label>
+                </div>
+              </div>
+
+              <!-- additional instructions -->
+              <div>
+                <label>Additional instructions (optional)</label>
+                <textarea rows="4" placeholder="e.g. main character: Alex, village setting ..."></textarea>
+              </div>
+
+              <!-- info hint (same as original but restyled) -->
+              <div class="info-box">
+                <i data-feather="info" width="24" style="flex-shrink:0; color:#1e3a5f;"></i>
+                <span style="color:#1e2f42;">After placing order, send payment screenshot on WhatsApp for instant delivery. Custom scripts up to 24h.</span>
+              </div>
+            </form>
+          </div>
+
+          <!-- right column: order summary (sticky, glass) -->
+          <div class="summary-card sticky reveal" style="height: fit-content;">
+            <h3 style="margin-bottom: 1.8rem; font-size: 1.6rem;">summary</h3>
+
+            <div class="price-line">
+              <span>Base script</span>
+              <span>₹299</span>
+            </div>
+            <div class="price-line" id="customizationLine" style="display: none;">
+              <span>Customization</span>
+              <span>₹99</span>
+            </div>
+
+            <hr>
+
+            <div class="price-line total-row">
+              <span>Total</span>
+              <span id="totalPrice">₹299</span>
+            </div>
+
+            <button onclick="placeOrder()" class="btn btn-primary" style="width:100%; margin: 2rem 0 1.5rem; padding:1rem;">
+              Place order <i data-feather="arrow-right" width="20"></i>
+            </button>
+
+            <div style="text-align: center;">
+              <p style="font-size:0.95rem; color:#3b4f66;">or contact directly on WhatsApp</p>
+              <a href="https://wa.me/919999999999?text=Hi!%20I%20want%20to%20order%20a%20Minecraft%20script" target="_blank" class="btn btn-outline" style="margin-top:0.8rem; gap:0.5rem; font-size:1rem; padding:0.7rem 1.8rem;">
+                <i data-feather="message-circle" width="18"></i> WhatsApp order
+              </a>
+            </div>
+
+            <hr style="margin: 2rem 0 1rem;">
+
+            <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+              <div style="display: flex; align-items: center; gap: 1rem; color:#1f334a;">
+                <i data-feather="clock" width="20"></i> <span>Delivery: 5‑30 min</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 1rem; color:#1f334a;">
+                <i data-feather="refresh-cw" width="20"></i> <span>1 free revision included</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- bottom help section — same style as original page but consistent glass -->
+    <section class="py-16" style="padding: 3rem 0 5rem;">
+      <div class="container">
+        <div class="glass-card reveal" style="padding: 4rem 2rem; text-align: center; max-width: 800px; margin:0 auto;">
+          <h2 style="margin-bottom: 0.8rem;">need help before ordering?</h2>
+          <p style="margin-bottom: 2.2rem; color:#2f4057;">read FAQ or contact us directly</p>
+          <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+            <a href="faq.html" class="btn btn-outline" style="gap:0.6rem;"><i data-feather="help-circle"></i> FAQ</a>
+            <a href="contact.html" class="btn btn-outline" style="gap:0.6rem;"><i data-feather="mail"></i> Contact</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- same footer -->
+  <footer class="footer">
+    <p style="font-size: 0.95rem;">© 2026 orvicplayz Studio — premium Minecraft scripts for creators</p>
+  </footer>
+
+  <!-- feather icons init -->
+  <script>
+    feather.replace({ width: 20, height: 20 });
+  </script>
+
+  <!-- all interactions + navbar scroll + reveal + order functions (identical smooth system) -->
+  <script>
+    (function() {
+      'use strict';
+
+      // navbar scroll glass effect
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+          navbar.classList.add('nav-scrolled');
+        } else {
+          navbar.classList.remove('nav-scrolled');
+        }
+      });
+
+      // Intersection Observer for reveal animations
+      const revealElements = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target); // one-time
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+      revealElements.forEach(el => observer.observe(el));
+
+      // smooth scroll for anchor links (if any)
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === "#" || href === "") return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    })();
+
+    // order page specific functions (same as original but with premium feel)
+    function updateTotal() {
+      const customization = document.querySelector('input[name="customization"]:checked')?.value;
+      const customizationLine = document.getElementById('customizationLine');
+      const totalSpan = document.getElementById('totalPrice');
+      if (customization === 'yes') {
+        customizationLine.style.display = 'flex';
+        totalSpan.innerText = '₹398';
+      } else {
+        customizationLine.style.display = 'none';
+        totalSpan.innerText = '₹299';
+      }
+    }
+
+    function placeOrder() {
+      const form = document.getElementById('orderForm');
+      // simple validation check (all required fields)
+      const requiredInputs = form.querySelectorAll('[required]');
+      let valid = true;
+      requiredInputs.forEach(inp => {
+        if (!inp.value.trim()) valid = false;
+      });
+      if (!valid) {
+        alert('Please fill all required fields.');
+        return;
+      }
+      // simulate order
+      alert('✅ Order placed! (demo) — WhatsApp pe payment screenshot bhejo for instant delivery.');
+      // reset form
+      form.reset();
+      updateTotal(); // ensure radio reset
+    }
+
+    // initial call
+    window.addEventListener('DOMContentLoaded', () => {
+      updateTotal();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — orvicplayz Studio</title>
+  <meta name="description" content="Frequently asked questions about Minecraft story scripts, delivery, customization and refunds.">
+  <!-- same premium fonts & assets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    /* --------------------------------------------------------------
+       EXACT same design system as the generated premium index
+       – background, glass, spacing, animations, navbar, reveal
+    --------------------------------------------------------------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f5f7fa;
+      color: #1e1e2f;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* premium animated background — soft glass + moving gradient */
+    .premium-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      background: linear-gradient(145deg, #ffffff 0%, #f2f5fa 55%, #eef0f5 100%);
+    }
+
+    .premium-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 40%, rgba(180, 210, 255, 0.3) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(160, 200, 240, 0.2) 0%, transparent 55%),
+                  repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 8px);
+      pointer-events: none;
+    }
+
+    /* glass elements */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 2.5rem;
+      box-shadow: 0 15px 35px -10px rgba(0, 20, 30, 0.1);
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 2rem;
+    }
+
+    /* consistent container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* typography */
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #0b1c2e;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 8vw, 4.8rem);
+    }
+
+    h2 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #2d3a4e;
+      font-weight: 400;
+      font-size: 1.1rem;
+    }
+
+    /* buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.9rem 2.2rem;
+      border-radius: 3rem;
+      font-weight: 550;
+      font-size: 1.1rem;
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+      background: white;
+      color: #0e1f32;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      border: 1px solid rgba(0,0,0,0.02);
+    }
+
+    .btn-primary {
+      background: #1a2b3e;
+      color: white;
+      box-shadow: 0 8px 18px -8px rgba(20, 60, 100, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: #1f334a;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px -10px rgba(20, 60, 100, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(26, 43, 62, 0.2);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.6);
+      border-color: #1a2b3e;
+    }
+
+    /* FAQ item — glass, toggle */
+    .faq-item {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 2rem;
+      margin-bottom: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .faq-toggle {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      background: transparent;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      border-radius: 2rem;
+      color: #0b1c2e;
+      font-weight: 550;
+      font-size: 1.2rem;
+      transition: 0.2s;
+    }
+
+    .faq-toggle:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .faq-content {
+      padding: 0 2rem 1.8rem 2rem;
+      color: #2d4057;
+      line-height: 1.6;
+      border-top: 1px solid rgba(255,255,255,0.5);
+      margin-top: 0.2rem;
+    }
+
+    /* navigation — same style */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+
+    .nav-scrolled {
+      backdrop-filter: blur(14px) saturate(200%);
+      -webkit-backdrop-filter: blur(14px) saturate(200%);
+      background: rgba(255, 255, 255, 0.5);
+      border-bottom: 1px solid rgba(255,255,255,0.8);
+      padding: 0.8rem 2rem;
+    }
+
+    .nav-content {
+      width: 100%;
+      max-width: 1280px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 650;
+      font-size: 1.8rem;
+      letter-spacing: -0.03em;
+      color: #0b1c2e;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      color: #1e2e41;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #000;
+    }
+
+    /* section spacing */
+    section {
+      padding: 6rem 0;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* reveal animation (fade + slide) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.23, 0.93, 0.34, 1), transform 0.7s cubic-bezier(0.23, 0.93, 0.34, 1);
+    }
+
+    .reveal.active {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    /* footer same */
+    .footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      color: #3d4f63;
+      border-top: 1px solid rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(4px);
+    }
+
+    /* responsive */
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;
+      }
+      .container {
+        padding: 0 1.2rem;
+      }
+      .faq-toggle {
+        padding: 1.2rem 1.5rem;
+        font-size: 1.1rem;
+      }
+      .faq-content {
+        padding: 0 1.5rem 1.5rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- same premium background -->
+  <div class="premium-bg"></div>
+
+  <!-- navbar identical to index -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <span class="logo">blocktales<span style="font-weight:300;">.</span></span>
+      <div class="nav-links">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#scripts">Scripts</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="order.html" class="btn btn-primary" style="padding:0.5rem 1.8rem; color:#e2e8f0;">Order</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- FAQ section -->
+    <section style="padding-top: 9rem; padding-bottom: 4rem;">
+      <div class="container" style="max-width: 900px;">
+        <!-- header with reveal -->
+        <div class="reveal active" style="text-align: center; margin-bottom: 4rem;">
+          <h1>frequently asked</h1>
+          <p style="font-size: 1.25rem; color:#2f4057;">answers to common questions</p>
+        </div>
+
+        <!-- FAQ list (all items with toggle) -->
+        <div class="reveal" style="display: flex; flex-direction: column; gap: 1rem;">
+          <!-- Item 1: delivery -->
+          <div class="faq-item">
+            <button class="faq-toggle" onclick="toggleFaq(this)">
+              <span style="display: flex; align-items: center; gap: 0.8rem;">
+                <i data-feather="clock" width="22" style="color:#1a2b3e;"></i> How long does delivery take?
+              </span>
+              <i data-feather="chevron-down" class="faq-icon" width="22"></i>
+            </button>
+            <div class="faq-content" style="display: none;">
+              Delivery for pre-written scripts is instant — you’ll receive a Google Docs link via email within 5 to 30 minutes. Custom scripts may take longer, typically delivered within 24 hours. If it’s urgent, mention it on WhatsApp and we’ll prioritize your order.
+            </div>
+          </div>
+
+          <!-- Item 2: changes -->
+          <div class="faq-item">
+            <button class="faq-toggle" onclick="toggleFaq(this)">
+              <span style="display: flex; align-items: center; gap: 0.8rem;">
+                <i data-feather="edit-3" width="22"></i> Can I request changes?
+              </span>
+              <i data-feather="chevron-down" class="faq-icon" width="22"></i>
+            </button>
+            <div class="faq-content" style="display: none;">
+              Yes, absolutely! For ₹99, you can purchase a customization add-on to modify character names, endings, or specific scenes. Plus, every order includes one free revision — if you need minor changes, we’ll adjust them at no extra cost.
+            </div>
+          </div>
+
+          <!-- Item 3: delivery format -->
+          <div class="faq-item">
+            <button class="faq-toggle" onclick="toggleFaq(this)">
+              <span style="display: flex; align-items: center; gap: 0.8rem;">
+                <i data-feather="file-text" width="22"></i> How are scripts delivered?
+              </span>
+              <i data-feather="chevron-down" class="faq-icon" width="22"></i>
+            </button>
+            <div class="faq-content" style="display: none;">
+              All scripts are delivered via Google Docs. You’ll receive an editable link that you can use directly. Each document includes a scene-by-scene breakdown, dialogue suggestions, and camera directions. You can also download the document as a PDF or Word file if you wish.
+            </div>
+          </div>
+
+          <!-- Item 4: copyright -->
+          <div class="faq-item">
+            <button class="faq-toggle" onclick="toggleFaq(this)">
+              <span style="display: flex; align-items: center; gap: 0.8rem;">
+                <i data-feather="shield" width="22"></i> Will this cause a copyright strike?
+              </span>
+              <i data-feather="chevron-down" class="faq-icon" width="22"></i>
+            </button>
+            <div class="faq-content" style="display: none;">
+              No, it’s completely safe. All scripts are 100% original and specifically written for Minecraft gameplay. You receive full rights to use the script, and there will be no copyright issues — it’s your property once purchased.
+            </div>
+          </div>
+
+          <!-- Item 5: refund -->
+          <div class="faq-item">
+            <button class="faq-toggle" onclick="toggleFaq(this)">
+              <span style="display: flex; align-items: center; gap: 0.8rem;">
+                <i data-feather="refresh-cw" width="22"></i> What is the refund policy?
+              </span>
+              <i data-feather="chevron-down" class="faq-icon" width="22"></i>
+            </button>
+            <div class="faq-content" style="display: none;">
+              If a script is not delivered or there is a technical issue, a full refund will be provided within 7 days. However, since this is a digital product, refunds after delivery are only applicable if there is a major error or the script does not meet your requirements. For custom scripts, a 50% advance is non-refundable, as they are specifically written for you.
+            </div>
+          </div>
+
+          <!-- Item 6: languages -->
+          <div class="faq-item">
+            <button class="faq-toggle" onclick="toggleFaq(this)">
+              <span style="display: flex; align-items: center; gap: 0.8rem;">
+                <i data-feather="globe" width="22"></i> Which languages are available?
+              </span>
+              <i data-feather="chevron-down" class="faq-icon" width="22"></i>
+            </button>
+            <div class="faq-content" style="display: none;">
+              Currently, scripts are available in two languages: Hinglish (a mix of Hindi and English, ideal for connecting with the Indian audience) and English. You can select your preferred language when placing your order. For custom scripts, you can also request a specific dialect or style.
+            </div>
+          </div>
+        </div>
+
+        <!-- still have doubts? glass card -->
+        <div class="reveal" style="margin-top: 4rem;">
+          <div class="glass-card" style="padding: 3rem 2rem; text-align: center;">
+            <h2 style="margin-bottom: 0.8rem;">still have any doubts?</h2>
+            <p style="margin-bottom: 2rem; color:#2f4057;">Message us directly on Discord - reply within 2 minutes.</p>
+            <a href="contact.html" class="btn btn-primary" style="gap:0.8rem; padding:1rem 2.5rem;">
+              Contact us <i data-feather="arrow-right" width="20"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- same footer -->
+  <footer class="footer">
+    <p style="font-size: 0.95rem;">© 2026 orvicplayz Studio — premium Minecraft scripts for creators</p>
+  </footer>
+
+  <!-- feather icons init -->
+  <script>
+    feather.replace({ width: 20, height: 20 });
+  </script>
+
+  <!-- all interactions + navbar scroll + reveal + FAQ toggle (smooth) -->
+  <script>
+    (function() {
+      'use strict';
+
+      // navbar scroll glass effect
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+          navbar.classList.add('nav-scrolled');
+        } else {
+          navbar.classList.remove('nav-scrolled');
+        }
+      });
+
+      // Intersection Observer for reveal animations
+      const revealElements = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target); // one-time
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+      revealElements.forEach(el => observer.observe(el));
+
+      // smooth scroll for anchor links (if any)
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === "#" || href === "") return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    })();
+
+    // FAQ toggle function (simple, with rotation)
+    function toggleFaq(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('.faq-icon');
+      
+      if (content.style.display === 'none' || !content.style.display) {
+        content.style.display = 'block';
+        icon.style.transform = 'rotate(180deg)';
+      } else {
+        content.style.display = 'none';
+        icon.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    // ensure all FAQ contents start hidden (already inline none)
+    window.addEventListener('DOMContentLoaded', () => {
+      // optional: set first item open? keep all closed as original.
+    });
+  </script>
+</body>
+</html>
