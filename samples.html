@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Sample scripts — orvicplayz Studio</title>
   <meta name="description" content="Read sample Minecraft story scripts. Horror, survival, emotional and mystery story snippets.">
   <!-- same premium fonts & assets -->
@@ -14,6 +14,7 @@
     /* --------------------------------------------------------------
        EXACT same design system as the generated premium index
        – background, glass, spacing, animations, navbar, reveal
+       FULLY RESPONSIVE — no horizontal scroll, fluid grids
     --------------------------------------------------------------- */
     * {
       margin: 0;
@@ -23,6 +24,8 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
+      width: 100%;
     }
 
     body {
@@ -33,6 +36,7 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
+      width: 100%;
     }
 
     /* premium animated background — soft glass + moving gradient */
@@ -40,7 +44,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
+      width: 100%;
       height: 100vh;
       z-index: -2;
       background: linear-gradient(145deg, #ffffff 0%, #f2f5fa 55%, #eef0f5 100%);
@@ -76,6 +80,7 @@
 
     /* consistent container */
     .container {
+      width: 100%;
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 2rem;
@@ -90,11 +95,11 @@
     }
 
     h1 {
-      font-size: clamp(2.8rem, 8vw, 4.8rem);
+      font-size: clamp(2.5rem, 7vw, 4.8rem);
     }
 
     h2 {
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-size: clamp(2rem, 5vw, 3.2rem);
       margin-bottom: 1rem;
     }
 
@@ -145,7 +150,7 @@
       border-color: #1a2b3e;
     }
 
-    /* filter chips (custom for samples) */
+    /* filter chips (custom for samples) — now responsive */
     .filter-chip {
       padding: 0.6rem 1.6rem;
       border-radius: 3rem;
@@ -157,6 +162,7 @@
       color: #1e2f42;
       cursor: pointer;
       transition: all 0.2s ease;
+      white-space: nowrap;
     }
     .filter-chip:hover {
       background: white;
@@ -183,7 +189,9 @@
       padding: 2rem;
       transition: all 0.3s ease;
       box-shadow: 0 8px 20px -12px rgba(0,0,0,0.12);
-      display: block; /* ensure cards are visible */
+      display: block;
+      height: 100%;
+      width: 100%;
     }
 
     .sample-card:hover {
@@ -217,7 +225,7 @@
       line-height: 1.6;
     }
 
-    /* navigation — same style */
+    /* navigation — same style, responsive */
     .navbar {
       position: fixed;
       top: 0;
@@ -243,6 +251,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .logo {
@@ -256,12 +265,14 @@
       display: flex;
       gap: 2.5rem;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .nav-links a {
       font-weight: 500;
       color: #1e2e41;
       transition: color 0.2s;
+      white-space: nowrap;
     }
 
     .nav-links a:hover {
@@ -273,6 +284,7 @@
       padding: 6rem 0;
       position: relative;
       z-index: 5;
+      width: 100%;
     }
 
     /* reveal animation (fade + slide) */
@@ -295,36 +307,147 @@
       border-top: 1px solid rgba(255,255,255,0.7);
       background: rgba(255,255,255,0.3);
       backdrop-filter: blur(4px);
+      width: 100%;
     }
 
-    /* samples grid responsive */
+    /* ========== RESPONSIVE GRIDS ========== */
     .samples-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
+      width: 100%;
     }
 
-    /* responsive */
-    @media (max-width: 900px) {
+    .filter-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-bottom: 4rem;
+    }
+
+    .bottom-cta-flex {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* tablet breakpoints */
+    @media (max-width: 1000px) {
       .samples-grid {
-        grid-template-columns: repeat(1, 1fr);
-        gap: 1.5rem;
+        gap: 1.8rem;
       }
     }
 
-    @media (max-width: 700px) {
-      .nav-links {
-        display: none;
+    @media (max-width: 900px) {
+      .container {
+        padding: 0 1.8rem;
       }
+      .nav-links {
+        gap: 1.8rem;
+      }
+      .btn {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+      }
+      section {
+        padding: 5rem 0;
+      }
+    }
+
+    /* large mobile: switch to 1 column */
+    @media (max-width: 750px) {
+      .samples-grid {
+        grid-template-columns: 1fr;
+        max-width: 550px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .nav-content {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .navbar, .nav-scrolled {
+        padding: 1rem 1.5rem;
+      }
+      .nav-links {
+        justify-content: center;
+        gap: 1.2rem 1.5rem;
+      }
+      .nav-links a {
+        font-size: 0.95rem;
+      }
+      .btn {
+        padding: 0.6rem 1.4rem;
+        font-size: 0.95rem;
+      }
+      .filter-chip {
+        padding: 0.5rem 1.4rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* mobile */
+    @media (max-width: 550px) {
       .container {
         padding: 0 1.2rem;
+      }
+      h1 {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+      }
+      section {
+        padding: 4rem 0;
       }
       .sample-card {
         padding: 1.5rem;
       }
-      h1 {
-        font-size: clamp(2.4rem, 8vw, 3.2rem);
+      .script-preview {
+        padding: 1.2rem;
+        font-size: 0.9rem;
       }
+      .genre-tag {
+        font-size: 0.7rem;
+        padding: 0.2rem 1rem;
+      }
+      .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+      }
+      .footer {
+        padding: 2rem 1rem;
+      }
+      .filter-wrapper {
+        gap: 0.6rem;
+      }
+      .filter-chip {
+        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    /* small mobile */
+    @media (max-width: 380px) {
+      .nav-links {
+        gap: 0.8rem;
+      }
+      .filter-wrapper {
+        gap: 0.4rem;
+      }
+      .filter-chip {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.75rem;
+      }
+    }
+
+    /* ensure no overflow */
+    img, svg, iframe {
+      max-width: 100%;
+    }
+
+    /* additional utility */
+    .no-scrollbar {
+      overflow: hidden;
     }
   </style>
 </head>
@@ -357,8 +480,8 @@
           <p style="font-size: 1.25rem; color:#2f4057;">previews — full scripts contain more scenes & dialogue</p>
         </div>
 
-        <!-- filter chips (styled as premium) -->
-        <div class="reveal" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-bottom: 4rem;">
+        <!-- filter chips (responsive wrapper) -->
+        <div class="filter-wrapper reveal">
           <button class="filter-chip active" data-filter="all" onclick="filterSamples('all')">All</button>
           <button class="filter-chip" data-filter="horror" onclick="filterSamples('horror')">Horror</button>
           <button class="filter-chip" data-filter="survival" onclick="filterSamples('survival')">Survival</button>
@@ -366,81 +489,81 @@
           <button class="filter-chip" data-filter="mystery" onclick="filterSamples('mystery')">Mystery</button>
         </div>
 
-        <!-- samples grid (2 columns on desktop, 1 on mobile) -->
+        <!-- samples grid (2 columns on desktop, 1 on mobile via media query) -->
         <div class="samples-grid" id="samplesGrid">
           <!-- Horror sample -->
           <div class="sample-card horror reveal">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem;">
               <span class="genre-tag" style="background: rgba(200, 90, 90, 0.2); color: #a13a3a;">Horror</span>
               <span style="color:#3f556a; font-weight:500;">10:30</span>
             </div>
-            <h3 style="font-size:1.8rem; margin:0.5rem 0 0.2rem;">The Cursed Seed</h3>
+            <h3 style="font-size:clamp(1.5rem, 5vw, 1.8rem); margin:0.5rem 0 0.2rem;">The Cursed Seed</h3>
             <div class="script-preview">
               <p style="margin-bottom:0.8rem;"><span style="font-weight:600; color:#1e3a5f;">[Scene 1: Dark Forest]</span></p>
               <p style="font-style:italic; margin-bottom:0.8rem;">"Player spawn hota hai ek dense dark forest mein. Immediately atmosphere tense hai - fog hai, strange noises aa rahe hain..."</p>
               <p><span style="font-weight:600;">Player (whisper):</span> "Ye jagah sahi nahi lag rahi... par diamond yahi kahi hone chahiye..."</p>
               <p style="margin-top:0.5rem;">Suddenly, distance mein ek structure dikhta hai - ek abandoned mansion jo map pe marked nahi tha...</p>
             </div>
-            <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem;">
               <span style="color:#3a4e64; font-size:0.95rem;">Hinglish · 3 characters</span>
-              <a href="order.html?script=cursed-seed" class="btn-outline" style="padding:0.5rem 1.5rem; border-radius:3rem; font-size:0.95rem;">get full <i data-feather="external-link" width="16"></i></a>
+              <a href="order.html?script=cursed-seed" class="btn-outline" style="padding:0.5rem 1.5rem; border-radius:3rem; font-size:0.95rem; white-space: nowrap;">get full <i data-feather="external-link" width="16"></i></a>
             </div>
           </div>
 
           <!-- Survival sample -->
           <div class="sample-card survival reveal">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem;">
               <span class="genre-tag" style="background: rgba(60, 140, 100, 0.2); color: #1f7042;">Survival</span>
               <span style="color:#3f556a; font-weight:500;">11:00</span>
             </div>
-            <h3 style="font-size:1.8rem; margin:0.5rem 0 0.2rem;">100 Days Hardcore</h3>
+            <h3 style="font-size:clamp(1.5rem, 5vw, 1.8rem); margin:0.5rem 0 0.2rem;">100 Days Hardcore</h3>
             <div class="script-preview">
               <p><span style="font-weight:600; color:#1e3a5f;">[Day 1: Sunrise]</span></p>
               <p style="font-style:italic;">"Player hardcore mode mein spawn hota hai. Health bar ka dhyan rahe - ek bhi death = game over."</p>
               <p><span style="font-weight:600;">Player:</span> "Goal clear hai - survive karna hai 100 days aur ek massive castle banana hai..."</p>
               <p>Pehla task: shelter aur food. Player quickly trees torne lagta hai par suddenly...</p>
             </div>
-            <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem;">
               <span style="color:#3a4e64; font-size:0.95rem;">Hinglish · solo</span>
-              <a href="order.html?script=100-days" class="btn-outline" style="padding:0.5rem 1.5rem; border-radius:3rem; font-size:0.95rem;">get full <i data-feather="external-link" width="16"></i></a>
+              <a href="order.html?script=100-days" class="btn-outline" style="padding:0.5rem 1.5rem; border-radius:3rem; font-size:0.95rem; white-space: nowrap;">get full <i data-feather="external-link" width="16"></i></a>
             </div>
           </div>
 
           <!-- Emotional sample -->
           <div class="sample-card emotional reveal">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem;">
               <span class="genre-tag" style="background: rgba(50, 110, 160, 0.2); color: #1d5b8c;">Emotional</span>
               <span style="color:#3f556a; font-weight:500;">10:45</span>
             </div>
-            <h3 style="font-size:1.8rem; margin:0.5rem 0 0.2rem;">The Last Dog</h3>
+            <h3 style="font-size:clamp(1.5rem, 5vw, 1.8rem); margin:0.5rem 0 0.2rem;">The Last Dog</h3>
             <div class="script-preview">
               <p><span style="font-weight:600; color:#1e3a5f;">[Scene: Ruined Village]</span></p>
               <p style="font-style:italic;">"Player ek destroyed village mein ghoom raha hai. Sab kuch jal chuka hai, bas ek puppy bacha hai..."</p>
               <p><span style="font-weight:600;">Player (softly):</span> "Tu akela bach gaya? Chal mere saath..."</p>
               <p>Player puppy ko bone deta hai. Friendship start hoti hai. Montage: building house together, mining together...</p>
             </div>
-            <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem;">
               <span style="color:#3a4e64; font-size:0.95rem;">Hinglish · 2 characters</span>
-              <a href="order.html?script=last-dog" class="btn-outline" style="padding:0.5rem 1.5rem; border-radius:3rem; font-size:0.95rem;">get full <i data-feather="external-link" width="16"></i></a>
+              <a href="order.html?script=last-dog" class="btn-outline" style="padding:0.5rem 1.5rem; border-radius:3rem; font-size:0.95rem; white-space: nowrap;">get full <i data-feather="external-link" width="16"></i></a>
             </div>
           </div>
 
           <!-- Mystery sample -->
           <div class="sample-card mystery reveal">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem;">
               <span class="genre-tag" style="background: rgba(120, 80, 160, 0.2); color: #5e3c9b;">Mystery</span>
               <span style="color:#3f556a; font-weight:500;">11:15</span>
             </div>
-            <h3 style="font-size:1.8rem; margin:0.5rem 0 0.2rem;">The Missing Builder</h3>
+            <h3 style="font-size:clamp(1.5rem, 5vw, 1.8rem); margin:0.5rem 0 0.2rem;">The Missing Builder</h3>
             <div class="script-preview">
               <p><span style="font-weight:600; color:#1e3a5f;">[Scene: Server Spawn]</span></p>
               <p style="font-style:italic;">"The server's top builder, “SteveMaster,” has gone missing. Strange clues were found inside his house…"</p>
               <p><span style="font-weight:600;">Detective (Player):</span> "This redstone circuit pattern is unusual… almost as if it's hiding a message…"</p>
               <p>The player follows the clues — a secret room, an encrypted book, and a mysterious coordinate…</p>
             </div>
-            <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem;">
               <span style="color:#3a4e64; font-size:0.95rem;">English · 4+ characters</span>
-              <a href="order.html?script=missing-builder" class="btn-outline" style="padding:0.5rem 1.5rem; border-radius:3rem; font-size:0.95rem;">get full <i data-feather="external-link" width="16"></i></a>
+              <a href="order.html?script=missing-builder" class="btn-outline" style="padding:0.5rem 1.5rem; border-radius:3rem; font-size:0.95rem; white-space: nowrap;">get full <i data-feather="external-link" width="16"></i></a>
             </div>
           </div>
         </div>
@@ -459,7 +582,7 @@
         <div class="glass-card reveal" style="padding: 4rem 2rem; text-align: center; max-width: 800px; margin:0 auto;">
           <h2 style="margin-bottom: 0.8rem;">need help before ordering?</h2>
           <p style="margin-bottom: 2.2rem; color:#2f4057;">read FAQ or contact us directly</p>
-          <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+          <div class="bottom-cta-flex">
             <a href="faq.html" class="btn btn-outline" style="gap:0.6rem;"><i data-feather="help-circle"></i> FAQ</a>
             <a href="contact.html" class="btn btn-outline" style="gap:0.6rem;"><i data-feather="mail"></i> Contact</a>
           </div>
@@ -504,7 +627,6 @@
         });
       }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
       
-      // Re-run observer when new elements might be added (filter doesn't add/remove, just hides)
       revealElements.forEach(el => observer.observe(el));
 
       // smooth scroll for anchor links (if any)

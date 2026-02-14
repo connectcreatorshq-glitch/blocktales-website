@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Order your script — orvicplayz Studio</title>
   <meta name="description" content="Order your Minecraft story script. Fill the form and get instant delivery. Custom orders available.">
   <!-- same premium fonts & assets -->
@@ -14,6 +14,7 @@
     /* --------------------------------------------------------------
        EXACT same design system as the generated premium index
        – background, glass, spacing, animations, navbar, reveal
+       FULLY RESPONSIVE — no horizontal scroll, fluid grids
     --------------------------------------------------------------- */
     * {
       margin: 0;
@@ -23,6 +24,8 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
+      width: 100%;
     }
 
     body {
@@ -33,6 +36,7 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
+      width: 100%;
     }
 
     /* premium animated background — soft glass + moving gradient */
@@ -40,7 +44,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
+      width: 100%;
       height: 100vh;
       z-index: -2;
       background: linear-gradient(145deg, #ffffff 0%, #f2f5fa 55%, #eef0f5 100%);
@@ -74,8 +78,9 @@
       border-radius: 2rem;
     }
 
-    /* consistent container */
+    /* consistent container — fluid */
     .container {
+      width: 100%;
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 2rem;
@@ -90,11 +95,11 @@
     }
 
     h1 {
-      font-size: clamp(2.8rem, 8vw, 4.8rem);
+      font-size: clamp(2.5rem, 7vw, 4.8rem);
     }
 
     h2 {
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-size: clamp(2rem, 5vw, 3.2rem);
       margin-bottom: 1rem;
     }
 
@@ -102,6 +107,9 @@
       color: #2d3a4e;
       font-weight: 400;
       font-size: 1.1rem;
+      max-width: 70ch;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* buttons */
@@ -145,7 +153,7 @@
       border-color: #1a2b3e;
     }
 
-    /* navigation — same style */
+    /* navigation — same style, responsive */
     .navbar {
       position: fixed;
       top: 0;
@@ -171,6 +179,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .logo {
@@ -184,12 +193,14 @@
       display: flex;
       gap: 2.5rem;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .nav-links a {
       font-weight: 500;
       color: #1e2e41;
       transition: color 0.2s;
+      white-space: nowrap;
     }
 
     .nav-links a:hover {
@@ -201,6 +212,7 @@
       padding: 6rem 0;
       position: relative;
       z-index: 5;
+      width: 100%;
     }
 
     /* reveal animation (fade + slide) */
@@ -224,6 +236,7 @@
       border-radius: 2.5rem;
       padding: 2.5rem;
       box-shadow: 0 15px 35px -10px rgba(0,20,30,0.1);
+      width: 100%;
     }
 
     .summary-card {
@@ -234,6 +247,7 @@
       border-radius: 2rem;
       padding: 2rem;
       box-shadow: 0 10px 25px -12px rgba(0,0,0,0.1);
+      width: 100%;
     }
 
     label {
@@ -271,6 +285,7 @@
       padding: 0.8rem 1.5rem;
       border-radius: 3rem;
       border: 1px solid rgba(255,255,255,0.7);
+      flex-wrap: wrap;
     }
 
     .radio-group label {
@@ -343,19 +358,158 @@
       border-top: 1px solid rgba(255,255,255,0.7);
       background: rgba(255,255,255,0.3);
       backdrop-filter: blur(4px);
+      width: 100%;
     }
 
-    /* responsive */
-    @media (max-width: 700px) {
-      .nav-links {
-        display: none;
+    /* ========== RESPONSIVE GRID + FIXES ========== */
+    .order-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      width: 100%;
+    }
+
+    .form-row-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    /* tablet breakpoint */
+    @media (max-width: 1000px) {
+      .order-grid {
+        grid-template-columns: 1fr;  /* stack on tablet */
+        gap: 2rem;
       }
+      .sticky {
+        position: static; /* remove sticky on smaller screens */
+        top: auto;
+      }
+      .summary-card {
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 900px) {
       .container {
-        padding: 0 1.2rem;
+        padding: 0 1.8rem;
+      }
+      .nav-links {
+        gap: 1.8rem;
+      }
+      .btn {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+      }
+      section {
+        padding: 5rem 0;
+      }
+    }
+
+    /* large mobile */
+    @media (max-width: 750px) {
+      .nav-content {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .navbar, .nav-scrolled {
+        padding: 1rem 1.5rem;
+      }
+      .nav-links {
+        justify-content: center;
+        gap: 1.2rem 1.5rem;
+      }
+      .nav-links a {
+        font-size: 0.95rem;
       }
       .form-card {
         padding: 1.8rem;
       }
+      .form-row-2col {
+        grid-template-columns: 1fr;  /* stack name/email */
+        gap: 1.2rem;
+      }
+      .radio-group {
+        gap: 1.2rem;
+        padding: 0.8rem 1.2rem;
+      }
+    }
+
+    /* mobile */
+    @media (max-width: 550px) {
+      .container {
+        padding: 0 1.2rem;
+      }
+      .navbar {
+        padding: 0.8rem 1rem;
+      }
+      .nav-links a {
+        font-size: 0.85rem;
+      }
+      .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
+      }
+      .logo {
+        font-size: 1.5rem;
+      }
+      section {
+        padding: 4rem 0;
+      }
+      .form-card {
+        padding: 1.5rem;
+        border-radius: 2rem;
+      }
+      .summary-card {
+        padding: 1.5rem;
+      }
+      .info-box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      .radio-group {
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 2rem;
+      }
+      h1 {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+      }
+      .footer {
+        padding: 2rem 1rem;
+      }
+      .sticky {
+        top: 0; /* not used anyway */
+      }
+    }
+
+    /* small mobile */
+    @media (max-width: 380px) {
+      .nav-links {
+        gap: 0.8rem;
+      }
+      .btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    /* ensure no overflow */
+    img, svg, iframe {
+      max-width: 100%;
+    }
+
+    /* contact/flex wrappers */
+    .contact-flex {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
     }
   </style>
 </head>
@@ -370,7 +524,7 @@
       <div class="nav-links">
         <a href="index.html#home">Home</a>
         <a href="index.html#scripts">Scripts</a>
-        <a href="pricing.html">Pricing</a>
+        <a href="index.html#pricing">Pricing</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
         <a href="order.html" class="btn btn-primary" style="padding:0.5rem 1.8rem; color:#e2e8f0;">Order</a>
@@ -388,25 +542,25 @@
           <p style="font-size: 1.25rem; color:#2d4055;">Fill the form, complete payment, and receive your script in minutes.</p>
         </div>
 
-        <!-- grid: form + summary (same structure as original but glassy) -->
-        <div class="grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+        <!-- responsive grid: form + summary -->
+        <div class="order-grid">
           <!-- left column: order form (glass) -->
           <div class="form-card reveal">
             <form id="orderForm" style="display: flex; flex-direction: column; gap: 2rem;">
-              <!-- name + contact row -->
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+              <!-- name + contact row (2col on desktop, stacked on mobile via .form-row-2col) -->
+              <div class="form-row-2col">
                 <div>
                   <label>Your name</label>
                   <input type="text" required placeholder="e.g. Alex" value="Test User">
                 </div>
                 <div>
-                  <label>Email or WhatsApp</label>
-                  <input type="text" required placeholder="example@gmail.com / +91..." value="test@blocktales.com">
+                  <label>Email or Discord</label>
+                  <input type="text" required placeholder="example@gmail.com / username#1234" value="test@blocktales.com">
                 </div>
               </div>
 
-              <!-- script type + language -->
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+              <!-- script type + language (2col on desktop, stacked via same class) -->
+              <div class="form-row-2col">
                 <div>
                   <label>Script type</label>
                   <select id="scriptType" required>
@@ -447,10 +601,10 @@
                 <textarea rows="4" placeholder="e.g. main character: Alex, village setting ..."></textarea>
               </div>
 
-              <!-- info hint (same as original but restyled) -->
+              <!-- info hint (updated to Discord) -->
               <div class="info-box">
                 <i data-feather="info" width="24" style="flex-shrink:0; color:#1e3a5f;"></i>
-                <span style="color:#1e2f42;">After placing order, send payment screenshot on WhatsApp for instant delivery. Custom scripts up to 24h.</span>
+                <span style="color:#1e2f42;">After placing order, send payment screenshot on Discord for instant delivery. Custom scripts up to 24h.</span>
               </div>
             </form>
           </div>
@@ -480,9 +634,10 @@
             </button>
 
             <div style="text-align: center;">
-              <p style="font-size:0.95rem; color:#3b4f66;">or contact directly on WhatsApp</p>
-              <a href="https://wa.me/919999999999?text=Hi!%20I%20want%20to%20order%20a%20Minecraft%20script" target="_blank" class="btn btn-outline" style="margin-top:0.8rem; gap:0.5rem; font-size:1rem; padding:0.7rem 1.8rem;">
-                <i data-feather="message-circle" width="18"></i> WhatsApp order
+              <p style="font-size:0.95rem; color:#3b4f66;">or contact directly on Discord</p>
+              <!-- Discord link instead of WhatsApp; using generic discord invite placeholder -->
+              <a href="https://discord.gg/orvicplayz" target="_blank" class="btn btn-outline" style="margin-top:0.8rem; gap:0.5rem; font-size:1rem; padding:0.7rem 1.8rem;">
+                <i data-feather="discord" width="18"></i> Discord order
               </a>
             </div>
 
@@ -501,13 +656,13 @@
       </div>
     </section>
 
-    <!-- bottom help section — same style as original page but consistent glass -->
-    <section class="py-16" style="padding: 3rem 0 5rem;">
+    <!-- bottom help section — same style, updated to Discord -->
+    <section style="padding: 3rem 0 5rem;">
       <div class="container">
         <div class="glass-card reveal" style="padding: 4rem 2rem; text-align: center; max-width: 800px; margin:0 auto;">
           <h2 style="margin-bottom: 0.8rem;">need help before ordering?</h2>
           <p style="margin-bottom: 2.2rem; color:#2f4057;">read FAQ or contact us directly</p>
-          <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+          <div class="contact-flex">
             <a href="faq.html" class="btn btn-outline" style="gap:0.6rem;"><i data-feather="help-circle"></i> FAQ</a>
             <a href="contact.html" class="btn btn-outline" style="gap:0.6rem;"><i data-feather="mail"></i> Contact</a>
           </div>
@@ -593,8 +748,8 @@
         alert('Please fill all required fields.');
         return;
       }
-      // simulate order
-      alert('✅ Order placed! (demo) — WhatsApp pe payment screenshot bhejo for instant delivery.');
+      // simulate order — updated Discord message
+      alert('✅ Order placed! (demo) — Discord pe payment screenshot bhejo for instant delivery.');
       // reset form
       form.reset();
       updateTotal(); // ensure radio reset

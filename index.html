@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>orvicplayz Studio — premium Minecraft scripts</title>
   <!-- minimal, modern, premium -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +13,7 @@
   <style>
     /* ------------------------------------------------------
        MODERN PREMIUM RESET & GLOBAL — soft, minimal, glassy 
+       FULLY RESPONSIVE — no horizontal scroll, refined breakpoints
     ------------------------------------------------------- */
     * {
       margin: 0;
@@ -22,7 +23,8 @@
 
     html {
       scroll-behavior: smooth;
-      /* Remove scroll-padding-top - we'll handle it with JS */
+      overflow-x: hidden;
+      width: 100%;
     }
 
     body {
@@ -34,6 +36,8 @@
       -moz-osx-font-smoothing: grayscale;
       transition: background-color 0.2s;
       overflow-x: hidden;
+      width: 100%;
+      position: relative;
     }
 
     /* premium animated background — soft glass + moving gradient */
@@ -41,7 +45,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
+      width: 100%;
       height: 100vh;
       z-index: -2;
       background: linear-gradient(145deg, #ffffff 0%, #f2f5fa 55%, #eef0f5 100%);
@@ -75,27 +79,29 @@
       border-radius: 2rem;
     }
 
-    /* consistent container */
+    /* consistent container — fluid, no overflow */
     .container {
+      width: 100%;
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 2rem;
     }
 
-    /* typography — clean, airy */
+    /* typography — clean, airy, fluid */
     h1, h2, h3 {
       font-weight: 600;
       letter-spacing: -0.02em;
       line-height: 1.2;
       color: #0b1c2e;
+      word-wrap: break-word;
     }
 
     h1 {
-      font-size: clamp(2.8rem, 8vw, 4.8rem);
+      font-size: clamp(2.5rem, 7vw, 4.8rem);
     }
 
     h2 {
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-size: clamp(2rem, 5vw, 3.2rem);
       margin-bottom: 1rem;
     }
 
@@ -103,6 +109,9 @@
       color: #2d3a4e;
       font-weight: 400;
       font-size: 1.1rem;
+      max-width: 70ch;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     a {
@@ -110,7 +119,7 @@
       color: inherit;
     }
 
-    /* buttons — minimal, crisp */
+    /* buttons — crisp, flexible */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -127,11 +136,12 @@
       color: #0e1f32;
       box-shadow: 0 2px 6px rgba(0,0,0,0.02);
       border: 1px solid rgba(0,0,0,0.02);
+      white-space: nowrap;
     }
 
     .btn-primary {
       background: #1a2b3e;
-      color: white; /* Changed from white to pure white for better contrast */
+      color: white;
       box-shadow: 0 8px 18px -8px rgba(20, 60, 100, 0.25);
     }
 
@@ -151,7 +161,7 @@
       border-color: #1a2b3e;
     }
 
-    /* navigation — becomes glass on scroll (js adds class) */
+    /* navigation — fully responsive */
     .navbar {
       position: fixed;
       top: 0;
@@ -177,6 +187,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .logo {
@@ -184,33 +195,38 @@
       font-size: 1.8rem;
       letter-spacing: -0.03em;
       color: #0b1c2e;
+      line-height: 1.2;
     }
 
     .nav-links {
       display: flex;
       gap: 2.5rem;
       align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .nav-links a {
       font-weight: 500;
       color: #1e2e41;
       transition: color 0.2s;
+      white-space: nowrap;
     }
 
     .nav-links a:hover {
       color: #000;
     }
 
-    /* section spacing */
+    /* section spacing — fluid */
     section {
       padding: 6rem 0;
       position: relative;
       z-index: 5;
-      /* Remove scroll-margin-top - we'll handle it with JS */
+      width: 100%;
+      overflow-x: hidden;
     }
 
-    /* reveal animations (fade + slide) — hidden until scrolled */
+    /* reveal animations */
     .reveal {
       opacity: 0;
       transform: translateY(24px);
@@ -222,12 +238,13 @@
       transform: translateY(0);
     }
 
-    /* card styles for scripts / features */
+    /* card grid — fully responsive */
     .feature-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 2rem;
       margin-top: 3rem;
+      width: 100%;
     }
 
     .premium-card {
@@ -239,6 +256,9 @@
       padding: 2.2rem 1.8rem;
       transition: all 0.25s ease;
       box-shadow: 0 5px 15px -8px rgba(0,0,0,0.1);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     .premium-card:hover {
@@ -258,6 +278,15 @@
       justify-content: center;
       margin-bottom: 1.5rem;
       box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+      flex-shrink: 0;
+    }
+
+    /* pricing grid */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      width: 100%;
     }
 
     /* footer minimal */
@@ -268,39 +297,10 @@
       border-top: 1px solid rgba(255,255,255,0.7);
       background: rgba(255,255,255,0.3);
       backdrop-filter: blur(4px);
+      width: 100%;
     }
 
-    /* responsive adjustments */
-    @media (max-width: 900px) {
-      .feature-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 700px) {
-      .nav-links {
-        display: none;
-      }
-      .container {
-        padding: 0 1.2rem;
-      }
-      .premium-card {
-        padding: 1.8rem;
-      }
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-      h1 {
-        font-size: clamp(2.4rem, 8vw, 3.2rem);
-      }
-    }
-
-    /* feather icons default */
-    i {
-      stroke-width: 1.5;
-    }
-
-    /* badge small */
+    /* badge */
     .trust-badge {
       background: rgba(255,255,255,0.5);
       border-radius: 3rem;
@@ -311,18 +311,200 @@
       align-items: center;
       gap: 0.5rem;
       font-size: 0.95rem;
+      white-space: nowrap;
     }
 
-    /* custom selection */
+    /* selection */
     ::selection {
       background: #c0d3eb;
       color: #0b1c2e;
     }
 
-    /* samples section (for anchor link) */
-    
-      /* No margin here - handled by JS */
-    
+    /* active nav link */
+    .nav-links a.active-nav {
+      position: relative;
+    }
+    .nav-links a.active-nav::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #1a2b3e;
+      border-radius: 2px;
+    }
+
+    /* ========== RESPONSIVE MEDIA QUERIES ========== */
+    /* Large desktop (default) */
+
+    /* tablet landscape / small desktop */
+    @media (max-width: 1100px) {
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.8rem;
+      }
+      .pricing-grid {
+        gap: 1.8rem;
+      }
+    }
+
+    /* tablet portrait */
+    @media (max-width: 900px) {
+      .container {
+        padding: 0 1.8rem;
+      }
+      .nav-links {
+        gap: 1.8rem;
+      }
+      .btn {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+      }
+      section {
+        padding: 5rem 0;
+      }
+    }
+
+    /* large mobile */
+    @media (max-width: 750px) {
+      .nav-content {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .navbar, .nav-scrolled {
+        padding: 1rem 1.5rem;
+      }
+      .nav-links {
+        justify-content: center;
+        gap: 1.2rem 1.5rem;
+      }
+      .nav-links a {
+        font-size: 0.95rem;
+      }
+      .btn {
+        white-space: nowrap;
+        padding: 0.5rem 1.4rem;
+        font-size: 0.95rem;
+      }
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+      }
+      .premium-card {
+        padding: 1.8rem 1.2rem;
+      }
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      h1 {
+        font-size: clamp(2.4rem, 8vw, 3.2rem);
+      }
+      .trust-badge {
+        font-size: 0.85rem;
+        padding: 0.4rem 1rem;
+      }
+    }
+
+    /* mobile */
+    @media (max-width: 550px) {
+      .container {
+        padding: 0 1.2rem;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+        max-width: 380px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        row-gap: 0.6rem;
+      }
+      .nav-links a {
+        font-size: 0.9rem;
+      }
+      .btn {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.9rem;
+      }
+      .logo {
+        font-size: 1.6rem;
+      }
+      section {
+        padding: 4rem 0;
+      }
+      .glass-card {
+        border-radius: 2rem;
+        padding: 2.5rem 1.2rem !important;
+      }
+      .glass-panel {
+        padding: 1.2rem 1.5rem !important;
+      }
+      .icon-circle {
+        width: 3rem;
+        height: 3rem;
+      }
+      .premium-card {
+        padding: 1.8rem 1.5rem;
+      }
+      .footer {
+        padding: 2rem 1rem;
+      }
+    }
+
+    /* small mobile */
+    @media (max-width: 380px) {
+      .nav-links {
+        gap: 0.8rem;
+      }
+      .btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+      }
+      .trust-badge {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.8rem;
+      }
+    }
+
+    /* feather icons default */
+    i {
+      stroke-width: 1.5;
+    }
+
+    /* extra: prevent any overflow from flex/grid children */
+    img, svg, iframe {
+      max-width: 100%;
+    }
+
+    /* inline flex wrappers for contact area */
+    .social-flex {
+      display: flex;
+      gap: 1.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ensure samples section buttons wrap nicely */
+    .sample-flex {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    /* faq container */
+    .faq-stack {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
   </style>
 </head>
 <body>
@@ -368,7 +550,7 @@
           <h2>script previews</h2>
           <p style="color:#3f4f64;">see the quality before you order — full scripts contain more scenes</p>
         </div>
-        <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+        <div class="sample-flex">
           <a href="samples.html" class="btn btn-outline">view all samples<i data-feather="arrow-right" width="18"></i></a>
         </div>
       </div>
@@ -388,28 +570,28 @@
             <div class="icon-circle"><i data-feather="moon" width="28" style="color:#1e2f42;"></i></div>
             <h3 style="margin-bottom: 0.75rem;">cursed seed</h3>
             <p style="margin-bottom: 1.5rem;">Abandoned mansion, fog, whispers — a horror thriller with 3 characters. Hinglish</p>
-            <a href="order.html" style="font-weight:600; display:flex; align-items:center; gap:0.4rem;">full script <i data-feather="chevron-right" width="18"></i></a>
+            <a href="order.html" style="font-weight:600; display:flex; align-items:center; gap:0.4rem; margin-top: auto;">full script <i data-feather="chevron-right" width="18"></i></a>
           </div>
           <!-- survival -->
           <div class="premium-card reveal">
             <div class="icon-circle"><i data-feather="compass" width="28"></i></div>
             <h3 style="margin-bottom: 0.75rem;">100 days hardcore</h3>
             <p style="margin-bottom: 1.5rem;">Solo survival, castle build, near‑death moments. Day‑by‑day narration.</p>
-            <a href="order.html" style="font-weight:600; display:flex; align-items:center; gap:0.4rem;">full script <i data-feather="chevron-right" width="18"></i></a>
+            <a href="order.html" style="font-weight:600; display:flex; align-items:center; gap:0.4rem; margin-top: auto;">full script <i data-feather="chevron-right" width="18"></i></a>
           </div>
           <!-- emotional -->
           <div class="premium-card reveal">
             <div class="icon-circle"><i data-feather="heart" width="28"></i></div>
             <h3 style="margin-bottom: 0.75rem;">the last dog</h3>
             <p style="margin-bottom: 1.5rem;">Ruined village, an orphaned puppy, friendship — emotional journey.</p>
-            <a href="order.html" style="font-weight:600; display:flex; align-items:center; gap:0.4rem;">full script <i data-feather="chevron-right" width="18"></i></a>
+            <a href="order.html" style="font-weight:600; display:flex; align-items:center; gap:0.4rem; margin-top: auto;">full script <i data-feather="chevron-right" width="18"></i></a>
           </div>
           <!-- mystery -->
           <div class="premium-card reveal">
             <div class="icon-circle"><i data-feather="search" width="28"></i></div>
             <h3 style="margin-bottom: 0.75rem;">missing builder</h3>
             <p style="margin-bottom: 1.5rem;">Redstone clues, secret room, detective dialogue. English.</p>
-            <a href="order.html" style="font-weight:600; display:flex; align-items:center; gap:0.4rem;">full script <i data-feather="chevron-right" width="18"></i></a>
+            <a href="order.html" style="font-weight:600; display:flex; align-items:center; gap:0.4rem; margin-top: auto;">full script <i data-feather="chevron-right" width="18"></i></a>
           </div>
         </div>
       </div>
@@ -422,7 +604,7 @@
           <h2>simple, fair pricing</h2>
           <p>no hidden fees · lifetime access · free minor edits</p>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+        <div class="pricing-grid">
           <!-- standard card -->
           <div class="premium-card reveal" style="padding: 2.5rem 2rem;">
             <h3 style="font-size: 2rem; margin-bottom: 0.2rem;">₹299</h3>
@@ -455,7 +637,7 @@
       <div class="container">
         <div class="reveal" style="max-width: 800px; margin: 0 auto;">
           <h2 style="text-align: center;">frequently asked</h2>
-          <div style="margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.2rem;">
+          <div class="faq-stack">
             <div class="glass-panel" style="padding: 1.5rem 2rem;">
               <h3 style="font-weight:600; margin-bottom:0.4rem;">⏱️ delivery time?</h3>
               <p style="margin:0;">Instant — 5 to 30 min via Google Docs. Custom scripts under 24h.</p>
@@ -482,7 +664,7 @@
         <div class="reveal glass-card" style="padding: 4rem 2.5rem; text-align: center;">
           <h2 style="margin-bottom: 1rem;">let’s work together</h2>
           <p style="max-width: 550px; margin: 0 auto 2rem;">DM on Discord, Instagram or email — reply within 2h.</p>
-          <div style="display: flex; gap: 1.8rem; justify-content: center; flex-wrap: wrap;">
+          <div class="social-flex">
             <a href="contact.html" style="display: flex; align-items: center; gap: 0.5rem;"><i data-feather="instagram"></i> jod_enix</a>
             <a href="contact.html" style="display: flex; align-items: center; gap: 0.5rem;"><i data-feather="mail"></i> contact.jodenix</a>
             <a href="contact.html" style="display: flex; align-items: center; gap: 0.5rem;"><i data-feather="message-circle"></i> discord</a>
@@ -502,20 +684,17 @@
     feather.replace({ width: 20, height: 20 });
   </script>
 
-  <!-- custom smooth & reveal JS (clean, optimised) with fixed anchor scrolling -->
+  <!-- custom smooth & reveal JS (fixed anchor scrolling + active nav) -->
   <script>
     (function() {
       'use strict';
 
-      // Get navbar element
       const navbar = document.getElementById('navbar');
       
-      // Function to get current navbar height (accounts for scroll state)
       function getNavbarHeight() {
-        return navbar ? navbar.offsetHeight : 80; // fallback to 80px
+        return navbar ? navbar.offsetHeight : 80;
       }
 
-      // Navbar scroll glass effect
       window.addEventListener('scroll', () => {
         if (window.scrollY > 40) {
           navbar.classList.add('nav-scrolled');
@@ -524,7 +703,6 @@
         }
       });
 
-      // Intersection Observer for reveal animations
       const revealElements = document.querySelectorAll('.reveal');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -537,44 +715,28 @@
 
       revealElements.forEach(el => observer.observe(el));
 
-      // FIXED ANCHOR SCROLLING - dynamically accounts for navbar height
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           const href = this.getAttribute('href');
-          
-          // Skip if it's just "#" or empty
           if (href === "#" || href === "") return;
-          
-          // Skip if it's a link to another page with hash (like order.html#section)
           if (href.includes('.html')) return;
           
           const targetElement = document.querySelector(href);
-          
           if (targetElement) {
             e.preventDefault();
-            
-            // Get navbar height (dynamic)
             const navbarHeight = getNavbarHeight();
-            
-            // Get target position
             const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = targetPosition - navbarHeight - 16;
             
-            // Calculate position with navbar offset
-            const offsetPosition = targetPosition - navbarHeight - 16; // 16px extra padding for visual comfort
-            
-            // Smooth scroll to position
             window.scrollTo({
               top: offsetPosition,
               behavior: 'smooth'
             });
-            
-            // Update URL hash without jumping
             history.pushState(null, null, href);
           }
         });
       });
 
-      // Highlight active nav link based on scroll position
       function updateActiveNavLink() {
         const sections = document.querySelectorAll('section[id]');
         const scrollPosition = window.scrollY + getNavbarHeight() + 20;
@@ -598,35 +760,22 @@
           }
         });
         
-        // If no section is active (e.g., at the very top), remove all active classes
         if (!activeFound) {
           navLinks.forEach(link => link.classList.remove('active-nav'));
         }
       }
 
-      // Add active nav style
-      const style = document.createElement('style');
-      style.textContent = `
-        .nav-links a.active-nav {
-          color: #1a2b3e;
-          font-weight: 600;
-        }
-      `;
-      document.head.appendChild(style);
+      // active style already in <style>
 
-      // Handle initial hash on page load
       function handleInitialHash() {
         if (window.location.hash) {
           const hash = window.location.hash;
           const targetElement = document.querySelector(hash);
-          
           if (targetElement) {
-            // Small delay to ensure navbar is rendered
             setTimeout(() => {
               const navbarHeight = getNavbarHeight();
               const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
               const offsetPosition = targetPosition - navbarHeight - 16;
-              
               window.scrollTo({
                 top: offsetPosition,
                 behavior: 'smooth'
@@ -636,10 +785,8 @@
         }
       }
 
-      // Run on load
       window.addEventListener('load', handleInitialHash);
       
-      // Update active nav link on scroll (with debounce for performance)
       let scrollTimeout;
       window.addEventListener('scroll', () => {
         clearTimeout(scrollTimeout);
@@ -648,12 +795,9 @@
         }, 10);
       });
       
-      // Run once on load
       updateActiveNavLink();
 
-      // Update navbar height calculation on resize
       window.addEventListener('resize', () => {
-        // Re-calc active nav link positions
         updateActiveNavLink();
       });
     })();
@@ -670,35 +814,15 @@
       opacity: 1 !important;
       transform: translateY(0) !important;
     }
-    /* minor fix for initial hero (already active) */
     #home .reveal.active {
       opacity: 1;
     }
-    /* improve card spacing */
     .premium-card i {
       stroke-width: 1.8;
     }
-    /* smooth transitions on nav */
     .navbar {
       transition: background 0.3s ease, backdrop-filter 0.3s ease, padding 0.3s ease;
-    }
-    /* active nav link */
-    .nav-links a.active-nav {
-      position: relative;
-    }
-    .nav-links a.active-nav::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: #1a2b3e;
-      border-radius: 2px;
     }
   </style>
 </body>
 </html>
-
-
-

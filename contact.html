@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Contact us — orvicplayz Studio</title>
   <meta name="description" content="Contact BlockTales Studio for Minecraft story scripts. WhatsApp, Instagram and Email support available.">
   <!-- same premium fonts & assets -->
@@ -14,6 +14,7 @@
     /* --------------------------------------------------------------
        EXACT same design system as the generated premium index
        – background, glass, spacing, animations, navbar, reveal
+       FULLY RESPONSIVE — no horizontal scroll, fluid grids
     --------------------------------------------------------------- */
     * {
       margin: 0;
@@ -23,6 +24,8 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
+      width: 100%;
     }
 
     body {
@@ -33,6 +36,7 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
+      width: 100%;
     }
 
     /* premium animated background — soft glass + moving gradient */
@@ -40,7 +44,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
+      width: 100%;
       height: 100vh;
       z-index: -2;
       background: linear-gradient(145deg, #ffffff 0%, #f2f5fa 55%, #eef0f5 100%);
@@ -74,8 +78,9 @@
       border-radius: 2rem;
     }
 
-    /* consistent container */
+    /* consistent container — fluid */
     .container {
+      width: 100%;
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 2rem;
@@ -90,11 +95,11 @@
     }
 
     h1 {
-      font-size: clamp(2.8rem, 8vw, 4.8rem);
+      font-size: clamp(2.5rem, 7vw, 4.8rem);
     }
 
     h2 {
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-size: clamp(2rem, 5vw, 3.2rem);
       margin-bottom: 1rem;
     }
 
@@ -159,6 +164,7 @@
       height: 100%;
       display: flex;
       flex-direction: column;
+      width: 100%;
     }
 
     .contact-card:hover {
@@ -232,6 +238,7 @@
       border: 1px solid rgba(255,255,255,0.7);
       border-radius: 2.5rem;
       padding: 2.5rem;
+      width: 100%;
     }
 
     .form-group {
@@ -283,7 +290,7 @@
       font-size: 0.95rem;
     }
 
-    /* navigation — same style */
+    /* navigation — same style, responsive */
     .navbar {
       position: fixed;
       top: 0;
@@ -309,6 +316,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .logo {
@@ -322,12 +330,14 @@
       display: flex;
       gap: 2.5rem;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .nav-links a {
       font-weight: 500;
       color: #1e2e41;
       transition: color 0.2s;
+      white-space: nowrap;
     }
 
     .nav-links a:hover {
@@ -339,6 +349,7 @@
       padding: 6rem 0;
       position: relative;
       z-index: 5;
+      width: 100%;
     }
 
     /* reveal animation (fade + slide) */
@@ -361,34 +372,137 @@
       border-top: 1px solid rgba(255,255,255,0.7);
       background: rgba(255,255,255,0.3);
       backdrop-filter: blur(4px);
+      width: 100%;
     }
 
-    /* responsive */
+    /* ========== RESPONSIVE GRIDS ========== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      width: 100%;
+    }
+
+    /* tablet breakpoint (2 columns) */
     @media (max-width: 900px) {
+      .container {
+        padding: 0 1.8rem;
+      }
+      .nav-links {
+        gap: 1.8rem;
+      }
+      .btn {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+      }
+      section {
+        padding: 5rem 0;
+      }
       .contact-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
       }
     }
 
-    @media (max-width: 700px) {
-      .nav-links {
-        display: none;
+    /* large mobile & small tablet */
+    @media (max-width: 750px) {
+      .nav-content {
+        flex-direction: column;
+        gap: 0.8rem;
       }
+      .navbar, .nav-scrolled {
+        padding: 1rem 1.5rem;
+      }
+      .nav-links {
+        justify-content: center;
+        gap: 1.2rem 1.5rem;
+      }
+      .nav-links a {
+        font-size: 0.95rem;
+      }
+      .btn {
+        padding: 0.6rem 1.4rem;
+        font-size: 0.95rem;
+      }
+      .contact-card {
+        padding: 2rem 1.5rem;
+      }
+      .form-glass {
+        padding: 2rem;
+      }
+    }
+
+    /* mobile (1 column) */
+    @media (max-width: 550px) {
       .container {
         padding: 0 1.2rem;
       }
+      h1 {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+      }
+      section {
+        padding: 4rem 0;
+      }
       .contact-grid {
         grid-template-columns: 1fr;
+        max-width: 380px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .contact-card {
+        padding: 2rem 1.5rem;
       }
       .form-glass {
         padding: 1.8rem;
       }
+      .hours-chip {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+        white-space: normal;
+        word-break: keep-all;
+      }
+      .footer {
+        padding: 2rem 1rem;
+      }
+    }
+
+    /* small mobile */
+    @media (max-width: 380px) {
+      .nav-links {
+        gap: 0.8rem;
+      }
+      .contact-card h3 {
+        font-size: 1.4rem;
+      }
+      .copy-section {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0.5rem;
+      }
+      .hours-chip {
+        gap: 0.3rem;
+        font-size: 0.85rem;
+      }
+    }
+
+    /* ensure no overflow */
+    img, svg, iframe {
+      max-width: 100%;
     }
 
     /* utility */
     .text-small {
       font-size: 0.9rem;
       color: #3f556a;
+    }
+
+    /* discord copy message */
+    #copyMsg {
+      transition: opacity 0.2s;
+      opacity: 0;
+      color: #1a7b4a;
+      font-size: 0.9rem;
+      margin-top: 0.8rem;
     }
   </style>
 </head>
@@ -403,7 +517,7 @@
       <div class="nav-links">
         <a href="index.html#home">Home</a>
         <a href="index.html#scripts">Scripts</a>
-        <a href="pricing.html">Pricing</a>
+        <a href="index.html#pricing">Pricing</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
         <a href="order.html" class="btn btn-primary" style="padding:0.5rem 1.8rem; color:#e2e8f0;">Order</a>
@@ -421,9 +535,9 @@
           <p style="font-size: 1.25rem; color:#2f4057;">have questions? fast response guaranteed - within 2h</p>
         </div>
 
-        <!-- contact cards grid (3 columns) -->
+        <!-- contact cards grid (3 columns on desktop, 2 on tablet, 1 on mobile) -->
         <div class="reveal" style="margin-bottom: 5rem;">
-          <div class="contact-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+          <div class="contact-grid">
             
             <!-- Discord card (with copy) -->
             <div class="contact-card discord">
@@ -437,7 +551,7 @@
                 <span style="font-weight:500; color:#1e2f42;" id="discordID">orvicplayz_yt</span>
                 <button class="copy-btn" onclick="copyDiscord()">Copy</button>
               </div>
-              <p id="copyMsg" style="color: #1a7b4a; font-size:0.9rem; margin-top:0.8rem; opacity:0; transition:opacity 0.2s;">✓ copied to clipboard</p>
+              <p id="copyMsg">✓ copied to clipboard</p>
             </div>
 
             <!-- Instagram card -->
@@ -447,7 +561,7 @@
               </div>
               <h3 style="font-size:1.6rem; margin-bottom:0.3rem;">Instagram</h3>
               <p style="color:#3f556a; margin-bottom:1.2rem;">DM for orders · new script updates</p>
-              <div style="margin-top: auto; display: flex; align-items: center; justify-content: center; gap:0.4rem; color:#e1306c; font-weight:500;">
+              <div style="margin-top: auto; display: flex; align-items: center; justify-content: center; gap:0.4rem; color:#e1306c; font-weight:500; flex-wrap: wrap;">
                 follow me <i data-feather="arrow-up-right" width="18"></i>
               </div>
             </a>
@@ -459,7 +573,7 @@
               </div>
               <h3 style="font-size:1.6rem; margin-bottom:0.3rem;">Email support</h3>
               <p style="color:#3f556a; margin-bottom:1.2rem;">detailed queries · 24h response</p>
-              <div style="margin-top: auto; display: flex; align-items: center; justify-content: center; gap:0.4rem; color:#0284c7; font-weight:500;">
+              <div style="margin-top: auto; display: flex; align-items: center; justify-content: center; gap:0.4rem; color:#0284c7; font-weight:500; word-break: break-word; flex-wrap: wrap;">
                 contact.jodenix@gmail.com <i data-feather="arrow-up-right" width="18"></i>
               </div>
             </a>

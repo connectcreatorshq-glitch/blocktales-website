@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>FAQ — orvicplayz Studio</title>
   <meta name="description" content="Frequently asked questions about Minecraft story scripts, delivery, customization and refunds.">
   <!-- same premium fonts & assets -->
@@ -14,6 +14,7 @@
     /* --------------------------------------------------------------
        EXACT same design system as the generated premium index
        – background, glass, spacing, animations, navbar, reveal
+       FULLY RESPONSIVE — no horizontal scroll, fluid grids
     --------------------------------------------------------------- */
     * {
       margin: 0;
@@ -23,6 +24,8 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
+      width: 100%;
     }
 
     body {
@@ -33,6 +36,7 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
+      width: 100%;
     }
 
     /* premium animated background — soft glass + moving gradient */
@@ -40,7 +44,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
+      width: 100%;
       height: 100vh;
       z-index: -2;
       background: linear-gradient(145deg, #ffffff 0%, #f2f5fa 55%, #eef0f5 100%);
@@ -74,8 +78,9 @@
       border-radius: 2rem;
     }
 
-    /* consistent container */
+    /* consistent container — fluid */
     .container {
+      width: 100%;
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 2rem;
@@ -90,11 +95,11 @@
     }
 
     h1 {
-      font-size: clamp(2.8rem, 8vw, 4.8rem);
+      font-size: clamp(2.5rem, 7vw, 4.8rem);
     }
 
     h2 {
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-size: clamp(2rem, 5vw, 3.2rem);
       margin-bottom: 1rem;
     }
 
@@ -145,7 +150,7 @@
       border-color: #1a2b3e;
     }
 
-    /* FAQ item — glass, toggle */
+    /* FAQ item — glass, toggle — fully responsive */
     .faq-item {
       background: rgba(255, 255, 255, 0.5);
       backdrop-filter: blur(8px);
@@ -154,6 +159,7 @@
       border-radius: 2rem;
       margin-bottom: 1rem;
       transition: all 0.2s ease;
+      width: 100%;
     }
 
     .faq-toggle {
@@ -171,6 +177,7 @@
       font-weight: 550;
       font-size: 1.2rem;
       transition: 0.2s;
+      gap: 1rem;
     }
 
     .faq-toggle:hover {
@@ -179,6 +186,7 @@
 
     .faq-icon {
       transition: transform 0.3s ease;
+      flex-shrink: 0;
     }
 
     .faq-content {
@@ -189,7 +197,7 @@
       margin-top: 0.2rem;
     }
 
-    /* navigation — same style */
+    /* navigation — same style, responsive */
     .navbar {
       position: fixed;
       top: 0;
@@ -215,6 +223,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .logo {
@@ -228,12 +237,14 @@
       display: flex;
       gap: 2.5rem;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .nav-links a {
       font-weight: 500;
       color: #1e2e41;
       transition: color 0.2s;
+      white-space: nowrap;
     }
 
     .nav-links a:hover {
@@ -245,6 +256,7 @@
       padding: 6rem 0;
       position: relative;
       z-index: 5;
+      width: 100%;
     }
 
     /* reveal animation (fade + slide) */
@@ -267,15 +279,52 @@
       border-top: 1px solid rgba(255,255,255,0.7);
       background: rgba(255,255,255,0.3);
       backdrop-filter: blur(4px);
+      width: 100%;
     }
 
-    /* responsive */
-    @media (max-width: 700px) {
-      .nav-links {
-        display: none;
-      }
+    /* ========== RESPONSIVE MEDIA QUERIES ========== */
+    @media (max-width: 900px) {
       .container {
-        padding: 0 1.2rem;
+        padding: 0 1.8rem;
+      }
+      .nav-links {
+        gap: 1.8rem;
+      }
+      .btn {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+      }
+      section {
+        padding: 5rem 0;
+      }
+      .faq-toggle {
+        padding: 1.3rem 1.8rem;
+        font-size: 1.1rem;
+      }
+      .faq-content {
+        padding: 0 1.8rem 1.5rem 1.8rem;
+      }
+    }
+
+    /* tablet and large mobile */
+    @media (max-width: 750px) {
+      .nav-content {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .navbar, .nav-scrolled {
+        padding: 1rem 1.5rem;
+      }
+      .nav-links {
+        justify-content: center;
+        gap: 1.2rem 1.5rem;
+      }
+      .nav-links a {
+        font-size: 0.95rem;
+      }
+      .btn {
+        padding: 0.6rem 1.4rem;
+        font-size: 0.95rem;
       }
       .faq-toggle {
         padding: 1.2rem 1.5rem;
@@ -283,7 +332,78 @@
       }
       .faq-content {
         padding: 0 1.5rem 1.5rem 1.5rem;
+        font-size: 1rem;
       }
+    }
+
+    /* mobile */
+    @media (max-width: 550px) {
+      .container {
+        padding: 0 1.2rem;
+      }
+      h1 {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+      }
+      section {
+        padding: 4rem 0;
+      }
+      .faq-toggle {
+        padding: 1rem 1.2rem;
+        font-size: 1rem;
+        gap: 0.8rem;
+      }
+      .faq-toggle span {
+        gap: 0.5rem;
+      }
+      .faq-content {
+        padding: 0 1.2rem 1.2rem 1.2rem;
+        font-size: 0.95rem;
+      }
+      .glass-card {
+        padding: 2.5rem 1.5rem !important;
+        border-radius: 2rem;
+      }
+      .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+      }
+      .footer {
+        padding: 2rem 1rem;
+      }
+    }
+
+    /* small mobile */
+    @media (max-width: 380px) {
+      .nav-links {
+        gap: 0.8rem;
+      }
+      .faq-toggle {
+        font-size: 0.95rem;
+        padding: 0.9rem 1rem;
+      }
+      .faq-content {
+        font-size: 0.9rem;
+      }
+    }
+
+    /* ensure no overflow */
+    img, svg, iframe {
+      max-width: 100%;
+    }
+
+    /* inner container for FAQ narrow width */
+    .faq-container {
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* contact flex wrapper */
+    .contact-flex {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
     }
   </style>
 </head>
@@ -298,7 +418,7 @@
       <div class="nav-links">
         <a href="index.html#home">Home</a>
         <a href="index.html#scripts">Scripts</a>
-        <a href="pricing.html">Pricing</a>
+        <a href="index.html#pricing">Pricing</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
         <a href="order.html" class="btn btn-primary" style="padding:0.5rem 1.8rem; color:#e2e8f0;">Order</a>
@@ -309,7 +429,7 @@
   <main>
     <!-- FAQ section -->
     <section style="padding-top: 9rem; padding-bottom: 4rem;">
-      <div class="container" style="max-width: 900px;">
+      <div class="container faq-container">
         <!-- header with reveal -->
         <div class="reveal active" style="text-align: center; margin-bottom: 4rem;">
           <h1>frequently asked</h1>
@@ -321,10 +441,10 @@
           <!-- Item 1: delivery -->
           <div class="faq-item">
             <button class="faq-toggle" onclick="toggleFaq(this)">
-              <span style="display: flex; align-items: center; gap: 0.8rem;">
-                <i data-feather="clock" width="22" style="color:#1a2b3e;"></i> How long does delivery take?
+              <span style="display: flex; align-items: center; gap: 0.8rem; word-break: break-word; text-align: left;">
+                <i data-feather="clock" width="22" style="color:#1a2b3e; flex-shrink:0;"></i> How long does delivery take?
               </span>
-              <i data-feather="chevron-down" class="faq-icon" width="22"></i>
+              <i data-feather="chevron-down" class="faq-icon" width="22" style="flex-shrink:0;"></i>
             </button>
             <div class="faq-content" style="display: none;">
               Delivery for pre-written scripts is instant — you’ll receive a Google Docs link via email within 5 to 30 minutes. Custom scripts may take longer, typically delivered within 24 hours. If it’s urgent, mention it on WhatsApp and we’ll prioritize your order.
@@ -334,10 +454,10 @@
           <!-- Item 2: changes -->
           <div class="faq-item">
             <button class="faq-toggle" onclick="toggleFaq(this)">
-              <span style="display: flex; align-items: center; gap: 0.8rem;">
-                <i data-feather="edit-3" width="22"></i> Can I request changes?
+              <span style="display: flex; align-items: center; gap: 0.8rem; word-break: break-word; text-align: left;">
+                <i data-feather="edit-3" width="22" style="flex-shrink:0;"></i> Can I request changes?
               </span>
-              <i data-feather="chevron-down" class="faq-icon" width="22"></i>
+              <i data-feather="chevron-down" class="faq-icon" width="22" style="flex-shrink:0;"></i>
             </button>
             <div class="faq-content" style="display: none;">
               Yes, absolutely! For ₹99, you can purchase a customization add-on to modify character names, endings, or specific scenes. Plus, every order includes one free revision — if you need minor changes, we’ll adjust them at no extra cost.
@@ -347,10 +467,10 @@
           <!-- Item 3: delivery format -->
           <div class="faq-item">
             <button class="faq-toggle" onclick="toggleFaq(this)">
-              <span style="display: flex; align-items: center; gap: 0.8rem;">
-                <i data-feather="file-text" width="22"></i> How are scripts delivered?
+              <span style="display: flex; align-items: center; gap: 0.8rem; word-break: break-word; text-align: left;">
+                <i data-feather="file-text" width="22" style="flex-shrink:0;"></i> How are scripts delivered?
               </span>
-              <i data-feather="chevron-down" class="faq-icon" width="22"></i>
+              <i data-feather="chevron-down" class="faq-icon" width="22" style="flex-shrink:0;"></i>
             </button>
             <div class="faq-content" style="display: none;">
               All scripts are delivered via Google Docs. You’ll receive an editable link that you can use directly. Each document includes a scene-by-scene breakdown, dialogue suggestions, and camera directions. You can also download the document as a PDF or Word file if you wish.
@@ -360,10 +480,10 @@
           <!-- Item 4: copyright -->
           <div class="faq-item">
             <button class="faq-toggle" onclick="toggleFaq(this)">
-              <span style="display: flex; align-items: center; gap: 0.8rem;">
-                <i data-feather="shield" width="22"></i> Will this cause a copyright strike?
+              <span style="display: flex; align-items: center; gap: 0.8rem; word-break: break-word; text-align: left;">
+                <i data-feather="shield" width="22" style="flex-shrink:0;"></i> Will this cause a copyright strike?
               </span>
-              <i data-feather="chevron-down" class="faq-icon" width="22"></i>
+              <i data-feather="chevron-down" class="faq-icon" width="22" style="flex-shrink:0;"></i>
             </button>
             <div class="faq-content" style="display: none;">
               No, it’s completely safe. All scripts are 100% original and specifically written for Minecraft gameplay. You receive full rights to use the script, and there will be no copyright issues — it’s your property once purchased.
@@ -373,10 +493,10 @@
           <!-- Item 5: refund -->
           <div class="faq-item">
             <button class="faq-toggle" onclick="toggleFaq(this)">
-              <span style="display: flex; align-items: center; gap: 0.8rem;">
-                <i data-feather="refresh-cw" width="22"></i> What is the refund policy?
+              <span style="display: flex; align-items: center; gap: 0.8rem; word-break: break-word; text-align: left;">
+                <i data-feather="refresh-cw" width="22" style="flex-shrink:0;"></i> What is the refund policy?
               </span>
-              <i data-feather="chevron-down" class="faq-icon" width="22"></i>
+              <i data-feather="chevron-down" class="faq-icon" width="22" style="flex-shrink:0;"></i>
             </button>
             <div class="faq-content" style="display: none;">
               If a script is not delivered or there is a technical issue, a full refund will be provided within 7 days. However, since this is a digital product, refunds after delivery are only applicable if there is a major error or the script does not meet your requirements. For custom scripts, a 50% advance is non-refundable, as they are specifically written for you.
@@ -386,10 +506,10 @@
           <!-- Item 6: languages -->
           <div class="faq-item">
             <button class="faq-toggle" onclick="toggleFaq(this)">
-              <span style="display: flex; align-items: center; gap: 0.8rem;">
-                <i data-feather="globe" width="22"></i> Which languages are available?
+              <span style="display: flex; align-items: center; gap: 0.8rem; word-break: break-word; text-align: left;">
+                <i data-feather="globe" width="22" style="flex-shrink:0;"></i> Which languages are available?
               </span>
-              <i data-feather="chevron-down" class="faq-icon" width="22"></i>
+              <i data-feather="chevron-down" class="faq-icon" width="22" style="flex-shrink:0;"></i>
             </button>
             <div class="faq-content" style="display: none;">
               Currently, scripts are available in two languages: Hinglish (a mix of Hindi and English, ideal for connecting with the Indian audience) and English. You can select your preferred language when placing your order. For custom scripts, you can also request a specific dialect or style.
@@ -409,6 +529,7 @@
         </div>
       </div>
     </section>
+  </main>
 
   <!-- same footer -->
   <footer class="footer">
